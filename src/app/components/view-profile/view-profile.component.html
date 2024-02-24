@@ -1,0 +1,49 @@
+<div class="edit-container">
+    <div class="edit-header">
+        <img src="/assets/images/user_icon.png" alt="" [src]="profileImageURL">
+        <div class="name">
+            <h1>{{ userName }}</h1>
+        </div>
+        <button class="editprofile" routerLink="profile-edit">Edit Profile</button>
+    </div>
+
+    <div class="side-info">
+        <div class="age">
+            <p>Age</p>
+            <input class="side-info-datas" type="text" name="" id="" placeholder="NA" [(ngModel)]="userData.age">
+        </div>
+        <div class="gender">
+            <p>Gender</p>
+            <input class="side-info-datas" type="text" name="" id="" placeholder="NA" [(ngModel)]="userData.gender">
+        </div>
+        <div class="contact">
+            <p>Contact No.</p>
+            <input class="side-info-datas" type="text" name="" id="" placeholder="NA" [(ngModel)]="userData.contactNo">
+        </div>    
+    </div>
+
+    <div class="personal-info">
+        <div class="header">Personal Information</div>
+        <div class="address">
+            <p>Full Address</p>
+            <textarea class="personal-datas personal-address" placeholder="NA" name="" id="" cols="30" rows="10" [(ngModel)]="userData.address"></textarea>
+        </div>
+        <div class="birthdate">
+            <p>Birthdate</p>
+            <input class="personal-datas" type="text" name="" id="" placeholder="NA" [(ngModel)]="userData.birthdate">
+        </div>
+        <div class="placeofbirth">
+            <p>Place of Birth</p>
+            <input class="personal-datas" type="text" name="" id="" placeholder="NA" [(ngModel)]="userData.placeOfBirth">
+        </div>
+        <div class="civilstatus">
+            <p>Civil Status</p>
+            <input class="personal-datas" type="text" name="" id="" placeholder="NA" [(ngModel)]="userData.civilStatus">
+        </div>
+    </div>
+    
+    <div class="activities">
+        <div class="header">Activities</div>
+        <div class="acts">You currently have no activities listed</div>
+    </div>
+</div>

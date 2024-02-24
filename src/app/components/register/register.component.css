@@ -1,0 +1,116 @@
+.reg-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    z-index: 5000;
+}
+.closebutton{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 40px -24px #212529;
+    z-index: 5;
+}
+.close{
+    position: absolute;
+    top: 25%;
+    left: 96%;
+    border: 1px solid white;
+    background-color: white;
+    color: RGB(25, 137, 220);
+}
+.container {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    height: 590px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    top: 100px;
+}
+
+.left{
+    position: relative;
+    border-right: 2px dotted rgb(139, 139, 139);
+    width: calc(50% - 1px);
+    height: 590px;
+    margin-right: -1px;
+}
+.left img{
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    top: -5%;
+}
+.left p{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    font-weight: 700;
+    color: #212529;
+}
+.right{
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    width: calc(50% - 1px);
+    height: 590px;
+    margin-left: -1px;
+}
+.right-header{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.signin-logo{
+    position: relative;
+    width: 90px;
+    height: 90px;
+}
+.loginform{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 10px;
+    margin-top: 16px;
+}
+input{
+    width: 400px;
+    height: 35px;
+    border-radius: 5px;
+    border: 2px solid #2e343a7e;
+}
+.loginform button{
+    width: 100%;
+}
+.loginbutton{
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #FAC00D;
+    border: 2px #FAC00D solid;
+    color: white;
+}
+.loginbutton:hover{
+    background-color: #ffffff;
+    color: #FAC00D;
+}
+.forgot {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    font: 600;
+}

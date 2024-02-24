@@ -1,0 +1,29 @@
+<div class="container slide-in-fwd-center">
+    <div class="">
+        <div class="closebutton">
+            <button class="close" (click)="closeFormModal()"><i class="fa-solid fa-xmark fa-xl"></i></button>
+        </div>
+        <div class="form-container">
+            <h2>Certificate of Guardianship Request Form</h2>
+            <form (submit)="submitRequest()" #requestForm="ngForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="{{userData.firstName}} {{userData.middleName}} {{userData.lastName}}" required>
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" [(ngModel)]="address" placeholder="{{userData.address}}" required>
+
+                <label for="Child's Name">Child's Name:</label>
+                <input type="text" id="childsname" name="childsname" [(ngModel)]="childsname" required>
+
+                <label for="Child's Name">Child's Birthdate:</label>
+                <input type="date" id="childsbirthdate" name="childsbirthdate" [(ngModel)]="childsbirthdate" required>
+
+                <label for="Child's Name">Child's Age:</label>
+                <input type="text" id="childsage" name="childsage" [(ngModel)]="childsage" placeholder="Example: '3 Years Old'" required>
+
+                <button type="submit" [disabled]="!requestForm.form.valid">Submit Request</button>
+        </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,56 @@
+<div class="container-fluid user-accounts-container">
+  <div class="header" style="position: relative; top: 80px; margin-left: 45px;">
+    <div class="row">
+        <div class="col-md-3">
+            <h1 class="text-center">User Accounts</h1>
+        </div>
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-3" style="margin-right: 50px;">
+                <div class="searchbar input-group">
+                    <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchInput" (input)="onSearchInput()" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary search" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+    </div>
+</div>
+  <div class="container mt-5">
+      <div class="table-responsive">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>User</th>
+                      <th>Email</th>
+                      <th>UID</th>
+                      <th>Registration Timestamp</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let user of filteredUsers">
+                      <td>
+                          <div class="user">
+                              <p>{{ user.name }}</p>
+                          </div>
+                      </td>
+                      <td>
+                          <div class="info-container">
+                              <p>{{ user.email }}<p>
+                          </div>
+                      </td>
+                      <td>
+                        <div class="info-container">
+                            <p>{{ user.uid }}<p>
+                        </div>
+                    </td> 
+                      <td>
+                          <div class="datefiled">
+                              <p>{{ user.registrationTimestamp | date: 'medium' }}</p>
+                          </div>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+
+    <div class="container">
+        <div class="closebutton">
+            <button class="close slide-out-top" (click)="close()"><i class="fa-solid fa-xmark fa-xl"></i></button>
+        </div>
+        <div class="inner">
+            <h2>Request Details</h2>
+        <div class="form" *ngIf="request.formType == 'Barangay ID'">
+            <p>User: {{ request.name }}</p>
+            <p>UID: {{request.userID}}</p>
+            <p>Address: {{ request.address }}</p>
+            <p>Signature: {{request.signature}}</p>
+            <p>Birthdate: {{request.birthdate}}<p>
+            <p>SSS No: {{request.sss}}</p>
+            <p>TIN No: {{request.tin}}</p>
+            <p>BloodType: {{request.bloodtype}}</p>
+            <p>Height: {{request.height}}</p>
+            <p>Weight: {{request.weight}}</p>
+            <p>Emer-name: {{request.emername}}</p>
+            <p>Emer-address: {{request.emeraddress}}</p>
+            <p>Emer-relationship: {{request.emerrelationship}}</p>
+            <p>Emer-contact: {{request.emercontact}}</p>
+            <p>RequestID: {{ request.id }}</p>
+            <p>Status: {{ request.status }}</p>
+        </div>
+        <div class="form" *ngIf="request.formType == 'Barangay Clearance'" >
+            <p>User: {{ request.name }}</p>
+            <p>UID: {{request.userID}}</p>
+            <p>Address: {{ request.address }}</p>
+            <p>Purpose of request: {{ request.purpose }}</p>
+            <p>RequestID: {{ request.id }}</p>
+            <p>Status: {{ request.status }}</p>
+        </div>
+        <div class="form" *ngIf="request.formType == 'Business Clearance'" >
+            <p>User: {{ request.name }}</p>
+            <p>UID: {{request.userID}}</p>
+            <p>Business Name: {{ request.business}}</p>
+            <p>Business Address: {{ request.businessaddress }}</p>
+            <p>RequestID: {{ request.id }}</p>
+            <p>Status: {{ request.status }}</p>
+        </div>
+        <div class="form" *ngIf="request.formType == 'Certificate of Indigency'" >
+            <p>User: {{ request.name }}</p>
+            <p>UID: {{request.userID}}</p>
+            <p>Address: {{ request.address }}</p>
+            <p>Purpose of request: {{ request.purpose }}</p>
+            <p>RequestID: {{ request.id }}</p>
+            <p>Status: {{ request.status }}</p>
+        </div>
+        <div class="form" *ngIf="request.formType == 'Certificate of Cohabitation'" >
+            <p>User: {{ request.name }}</p>
+            <p>Birthdate: {{ request.birthdate}}</p>
+            <p>Partner's Name: {{request.partnersName}}</p>
+            <p>Partner's Birthdate: {{request.partnersBirthdate}} </p>
+            <p>Spouses since: {{request.spousesince}}</p>
+            <p>UID: {{request.userID}}</p>
+            <p>Address: {{ request.address }}</p>
+            <p>Purpose of request: {{ request.purpose }}</p>
+            <p>RequestID: {{ request.id }}</p>
+            <p>Status: {{ request.status }}</p>
+        </div>
+        <div class="form" *ngIf="request.formType == 'Certificate of Residency'" >
+            <p>User: {{ request.name }}</p>
+            <p>UID: {{request.userID}}</p>
+            <p>Address: {{ request.address }}</p>
+            <p>Years of Residency: {{request.yearsofresidency}}</p>
+            <p>Purpose of Request: {{ request.purpose }}</p>
+            <p>RequestID: {{ request.id }}</p>
+            <p>Status: {{ request.status }}</p>
+        </div>
+        <div class="form" *ngIf="request.formType == 'Certificate of Good-Moral'" >
+            <p>User: {{ request.name }}</p>
+            <p>UID: {{request.userID}}</p>
+            <p>Address: {{ request.address }}</p>
+            <p>Purpose of request: {{ request.purpose }}</p>
+            <p>RequestID: {{ request.id }}</p>
+            <p>Status: {{ request.status }}</p>
+        </div>
+        <div class="form" *ngIf="request.formType == 'Certificate of Guardianship'" >
+            <p>User: {{ request.name }}</p>
+            <p>UID: {{request.userID}}</p>
+            <p>Address: {{ request.address }}</p>
+            <p>Child's Name: {{request.childsname}}</p>
+            <p>Child's Birthdate: {{request.childsbirthdate}}</p>
+            <p>Child's Age: {{request.childsage}}</p>
+            <p>RequestID: {{ request.id }}</p>
+            <p>Status: {{ request.status }}</p>
+        </div>
+        </div>
+    </div>

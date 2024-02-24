@@ -1,0 +1,131 @@
+.edit-profile-container{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 500;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.edit-profile-container h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-top: 80px;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form div {
+    flex: 0 0 calc(33.33% - 10px); /* Divide the form into three equal columns with spacing */
+    margin-bottom: 5px;
+}
+
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 50px;
+    color: gray;
+}
+
+.form input, select {
+    width: 75%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+.upload{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profilepicture{
+    background-color: rgb(255, 255, 255);
+    width: 400px;
+    height: auto;
+    display: flex; /* Use flexbox for vertical alignment */
+    flex-direction: column; /* Stack the child divs vertically */
+    justify-content: space-between; 
+    border-radius: 5px;
+    margin-left: 50px;
+}
+.profilepicture img{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    background: #dfdfdf;
+}
+.profilepicture label{
+    text-align: left;
+    color: gray;
+    margin-bottom: -80px;
+}
+.profilepicture input {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    top: -20%;
+}
+
+.uploadverification{
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    text-align: left;
+    width: 400px;
+    top: -70px;
+}
+.uploadverification h4{
+    font-size: 16px;
+}
+.uploadverification button{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 32px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid limegreen;
+    color: limegreen;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+}
+.uploadverification button:hover{
+    background-color: limegreen;
+    border: 2px solid limegreen;
+    color: white;
+}
+
+.forgerynote{
+    background-color: rgb(255, 255, 255);
+    width: 400px;
+    height: auto;
+    margin-right: 50px;
+}
+.forgerynote img{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+.forgerynote input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}

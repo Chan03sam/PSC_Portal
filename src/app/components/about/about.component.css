@@ -1,0 +1,239 @@
+:host{
+    margin: 0;
+    font-family: "Segoe UI",Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+.about-sec1{
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    z-index: 499;
+}
+.aboutheader{
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 900;
+    width: 900px;
+    text-align: center;
+}
+.abouttext{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 400;
+    text-align: center;
+    color: #6C757D;
+}
+.about-sec2{
+    position: absolute;
+    top: 100%;
+    background-color: rgb(235, 235, 235);
+    width: 100%;
+    height: 110vh;
+}
+.asiatech{
+    position: absolute;
+    width: 1100px;
+    height: 600px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+    box-shadow: 2px 2px 20px 0px;
+}
+.our-bg{
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 1050px;
+    line-height: 24px;
+}
+.our-bg-header{
+    font-size: 32px;
+    font-weight: 700;
+}
+.our-bg-text{
+    font-size: 16px;
+    font-weight: 400;
+    color: #6C757D;
+}
+.about-sec3{
+    position: absolute;
+    top: 210vh;
+    background-color: #ffffff;
+    width: 100%;
+    height: 110vh;
+}
+.psc{
+    position: absolute;
+    width: 1100px;
+    height: 600px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+    box-shadow: 2px 2px 20px 0px;
+}
+.our-core{
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 1050px;
+    line-height: 24px;
+}
+.our-core-header{
+    font-size: 32px;
+    font-weight: 700;
+}
+.our-core-text{
+    font-size: 16px;
+    font-weight: 400;
+    color: #6C757D;
+}
+.about-sec4{
+    position: absolute;
+    top: 320vh;
+    background-color: rgb(235, 235, 235);
+    width: 100%;
+    height: 100vh;
+}
+.our-team{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 1050px;
+    line-height: 24px;
+    text-align: center;
+}
+.our-team-header{
+    font-size: 32px;
+    font-weight: 700;
+}
+.our-team-text{
+    color: #6C757D;
+}
+.our-core-header{
+    font-size: 32px;
+    font-weight: 700;
+}
+.our-core-text{
+    font-size: 16px;
+    font-weight: 400;
+    color: #6C757D;
+}
+.card-container-group {
+    position: absolute;
+    top: 480px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 10px;
+}
+
+.card-container {
+    width: 200px;
+    height: auto;
+    border-radius: 2%;
+    background-color: rgb(215, 215, 215);
+    padding: 20px 16px 30px;
+    transition: 0.3s;
+    margin-right: 10px; 
+}
+.card-container:hover{
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.493);
+}
+img {
+    margin-top: 2px;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.card {
+    text-align: center;
+}
+.card-container h4{
+    margin-top: 2px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.card-container .course{
+    margin-top: -10px;
+    font-size: 16px;
+}
+.card-container .school{
+    margin-top: -15px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #6C757D;
+}
+.socials {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.socials i:hover{
+    cursor: pointer;
+}
+.about-sec5{
+    position: absolute;
+    top: 420vh;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100vh;
+}
+.maps{
+    position: absolute;
+    width: 100%;
+    height: 110vh;
+}
+.pulong{
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    margin-bottom: -20px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.493);
+}
+.esyatek{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.493);
+}
+.about-footer{
+    position: absolute;
+    top: 530vh;
+    width: 100%;
+    height: 70px;
+    background-color: rgb(215, 215, 215);
+}
+.about-footer p{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+

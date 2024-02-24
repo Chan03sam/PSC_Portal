@@ -1,0 +1,10 @@
+.loading-container{
+    background-color: rgb(255, 255, 255);
+    z-index: 5000;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+}
+.ngx-spinner {
+    background-color: black;
+}

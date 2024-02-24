@@ -1,0 +1,60 @@
+<div class="event-container">
+    <button class="btn" style="position: absolute; border-radius: 100%; right: 5px; top: 5px;" (click)="toggleForm()">
+      <i class="fa-solid" [ngClass]="{'fa-plus': !showForm, 'fa-times': showForm}"></i>
+      <span>{{ showForm ? '' : '' }}</span>
+    </button>
+    <h3 class="text-center" style="margin-top: 16px;">Events</h3>
+    <form *ngIf="showForm" (submit)="saveEvent()" class="p-3 border rounded" style="transform: scale(0.9); margin-top: -22px;">
+  
+      <div class="event-details row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="banner" class="form-label">Event Image</label>
+            <!-- Input for selecting an image file -->
+            <input type="file" id="banner" name="banner" (change)="onImageChange($event)" accept="image/*" class="form-control" required>
+            <!-- Display selected image -->
+            <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" class="img-fluid mt-2">
+          </div>
+  
+          <div class="form-group">
+            <label for="location" class="form-label">Location:</label>
+            <input type="text" id="location" name="location" [(ngModel)]="event.location" class="form-control" placeholder="Enter location" required>
+          </div>
+        </div>
+  
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="startDate" class="form-label">Start Date:</label>
+            <input type="datetime-local" id="startDate" name="startDate" [(ngModel)]="event.startDate" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="endDate" class="form-label">End Date:</label>
+            <input type="datetime-local" id="endDate" name="endDate" [(ngModel)]="event.endDate" class="form-control" required>
+          </div>
+        </div>
+  
+        <div class="form-group col-md-12">
+          <label for="text" class="form-label">Event Details:</label>
+          <textarea id="text" name="text" [(ngModel)]="event.text" class="form-control" placeholder="Enter announcement text" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+      </div>
+    </form>
+  
+    <div class="event-list bg-white p-3 rounded mb-3 col-12 d-flex align-items-center justify-content-center ">
+      <ul class="list-group">
+        <li *ngFor="let item of events" class="list-group-item form-control">
+          <div class="event-item ">
+            <img *ngIf="item.banner" [src]="item.banner" alt="Event Image" class="img-fluid mt-2" style="border-radius: 5px; margin-bottom: 5px;">
+            <p class="event-text form">{{ item.text }}</p>
+            <p class="event-location">Location: {{ item.location}}</p>
+            <p class="event-startDate">Start: {{ item.startDate | date:'medium' }}</p>
+            <p class="event-endDate">End: {{ item.endDate | date:'medium' }}</p>
+            <p class="post-date text-muted">Posted: {{ item.timestamp | timestamp }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

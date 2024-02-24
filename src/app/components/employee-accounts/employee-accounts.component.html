@@ -1,0 +1,57 @@
+<div class="container-fluid employee-accounts-container">
+    <div class="header" style="position: relative; top: 80px; margin-left: 45px;">
+      <div class="row">
+          <div class="col-md-4">
+              <h1 class="text-center">Employee Accounts</h1>
+          </div>
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-5">
+            <div class="add-employee">
+                <input type="email" [(ngModel)]="newAdminEmail" name="email" id="" placeholder="example@gmail.com">
+                <button (click)="addAdmin()" class="add">Add</button>
+                <button (click)="removeAdmin()" class="remove">Remove</button>
+            </div>
+          </div>
+      </div>
+  </div>
+    <div class="container mt-5">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>UID</th>
+                        <th>Registration Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>
+                            <div class="user">
+                                <p>{{ user.name }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-container">
+                                <p>{{ user.email }}<p>
+                            </div>
+                        </td>
+                        <td>
+                          <div class="info-container">
+                              <p>{{ user.uid }}<p>
+                          </div>
+                      </td> 
+                        <td>
+                            <div class="datefiled">
+                                <p>{{ user.registrationTimestamp | date: 'medium' }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+  

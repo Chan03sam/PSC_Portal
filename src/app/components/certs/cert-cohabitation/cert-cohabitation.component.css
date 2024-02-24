@@ -1,0 +1,125 @@
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: -300px; /* Half of the height */
+    margin-left: -400px; /* Half of the width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    height: 600px;
+    background-image: url("/assets/images/form-bg.jpg");
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px 1px;
+    z-index: 3000; /* Ensure the modal is on top of other content */
+}
+.form-container{
+    position: relative;
+    text-align: center;
+    top: -20px;
+}
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-container form input {
+    width: 100%;
+    height: 28px;
+    border-radius: 5px;
+}
+.form-container form button {
+    margin-top: 15px;
+    width: 50%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+h2{
+    position: relative;
+
+}
+
+.closebutton{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 5px 5px 40px -24px #212529;
+    z-index: 3001;
+}
+.close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 1px solid white;
+    background-color: white;
+    color: RGB(25, 137, 220);
+}
+
+.slide-in-top {
+	-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-fwd-center {
+	-webkit-animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes slide-in-fwd-center {
+    0% {
+        -webkit-transform: translateZ(-1400px);
+            transform: translateZ(-1400px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        opacity: 1;
+    }
+}
+@keyframes slide-in-fwd-center {
+    0% {
+        -webkit-transform: translateZ(-1400px);
+            transform: translateZ(-1400px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        opacity: 1;
+    }
+}

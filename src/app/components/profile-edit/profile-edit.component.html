@@ -1,0 +1,89 @@
+<div class="edit-profile-container">
+    <h4>Edit Profile</h4>
+        <div class="form">
+            <div class="fname">
+                <label for="fname">First Name</label>
+                <input type="text" [(ngModel)]="userData.firstName">
+            </div>
+            <div class="lname">
+                <label for="lname">Last Name</label>
+                <input type="text" [(ngModel)]="userData.lastName">
+            </div>
+            <div class="mname">
+                <label for="mname">Middle Name</label>
+                <input type="text" [(ngModel)]="userData.middleName">
+            </div>
+            <div class="age">
+                <label for="age">Age</label>
+                <input type="number" name="age" id="" [(ngModel)]="userData.age">
+            </div>
+            <div class="gender">
+                <label for="gender">Gender</label>
+                <select name="cars" id="cars" [(ngModel)]="userData.gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="contact">
+                <label for="contact">Contact No.</label>
+                <input type="tel" [(ngModel)]="userData.contactNo">
+            </div>
+            <div class="birthdate">
+                <label for="birthdate">Birthdate</label>
+                <input type="date" [(ngModel)]="userData.birthdate">
+            </div>
+            <div class="placeofbirth">
+                <label for="placeofbirth">Place of Birth</label>
+                <input type="text" [(ngModel)]="userData.placeOfBirth">
+            </div>
+            <div class="civilstatus">
+                <label for="civilstatus">Civil Status</label>
+                <select name="cars" id="cars" [(ngModel)]="userData.civilStatus">
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                </select>
+            </div>
+            <div class="email">
+                <label for="email">Email</label>
+                <input [(ngModel)]="userEmail" type="email" readonly>
+            </div>
+            <div class="address">
+                <label for="address">Address</label>
+                <input type="text" [(ngModel)]="userData.address">
+            </div>
+        </div>
+    
+    <div class="upload">
+        <div class="profilepicture">
+            <label for="profilepicture">Profile Picture</label>
+            <img *ngIf="profileImageURL; else tempUserIcon" [src]="profileImageURL" alt="Profile Image"/>
+                <ng-template #tempUserIcon>
+                <img src="/assets/images/user_icon.png" alt="Temporary User Icon"/>
+                </ng-template>
+            <input type="file" name="" id="input" (change)="onFileSelected($event)">
+        </div>
+
+        <div class="uploadverification">
+            <h4>Upload Verification</h4><br>
+            <p>Accepted Documents:</p>
+            <ul>
+                <li>Cedula</li>
+                <li>Certificate of Residency</li>
+                <li>Barangay ID</li>
+                <li>Voter's ID</li>
+                <li>Driver's License</li>
+            </ul>
+            <p><i>Upload a selfie of you holding any of these accepted documents.</i></p>
+            <button class="updateprofile" (click)="updateProfile()">Update</button>
+        </div>
+
+        <div class="forgerynote">
+            <p><i>Note: Forgery of these documents is punishable by law under
+                Article 161-175, which includes falsification of documents;
+                alteration of documents; use and/or concsious possession of
+                false writing with the intention to commit fraud.</i></p>
+                <img src="assets/IDcard.png" alt="">
+                <input type="file" name="" id="input" (change)="onForgeryFileSelected($event)">
+        </div>
+    </div>
+</div>

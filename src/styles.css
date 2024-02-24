@@ -1,0 +1,40 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+ /* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    height: 25%;
+}
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+body{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    background-image: url(/assets/images/sitebg.png);
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.sec2{
+    position: absolute;
+    height: 200vh;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

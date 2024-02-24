@@ -1,0 +1,88 @@
+.requests-container {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    overflow: auto; /* Add overflow: auto to enable scrolling if content exceeds container height */
+}
+
+.requests-container h2 {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    max-height: 550px;
+    overflow-y: scroll;
+    border-radius: 5px;
+    overflow-y: scroll;
+    margin: auto;
+}
+
+.header {
+    position: relative;
+    top: 15%;
+    padding: 20px;
+}
+
+
+.searchbar input[type="text"] {
+    border-radius: 5px 0 0 5px;
+}
+
+.searchbar .input-group-append button {
+    border-radius: 0 5px 5px 0;
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+.table th {
+    vertical-align: middle;
+}
+
+.avatar img {
+    width: 42px;
+    height: 42px;
+}
+
+.btn-primary,
+.btn-success,
+.btn-danger {
+    border-radius: 3px;
+    margin-right: 5px;
+    transform: scale(0.9);
+}
+
+.btn-primary:hover{
+    background-color: #ffffff;
+    color: cornflowerblue;
+    border: 1px solid cornflowerblue;
+}
+.btn-success:hover{
+    background-color: #ffffff;
+    color: rgb(39, 104, 39);
+    border: 1px solid rgb(39, 104, 39);
+}
+.btn-danger:hover {
+    background-color: #ffffff;
+    color: rgb(173, 48, 39);
+    border: 1px solid rgb(173, 48, 39);
+}
+
+.btn-info{
+    background-color: cornflowerblue;
+    color: white;
+}
+.btn-success {
+    background-color: rgb(39, 104, 39);
+    color: white;
+}
+
+.btn-danger {
+    background-color: rgb(173, 48, 39);
+    color: white;
+}

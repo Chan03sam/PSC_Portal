@@ -1,0 +1,30 @@
+<div class="announcement-container"> 
+    <button class="btn" style="position: absolute; border-radius: 100%; right: 5px; top: 5px;" (click)="toggleForm()">
+      <i class="fa-solid" [ngClass]="{'fa-plus': !showForm, 'fa-times': showForm}"></i>
+      <span>{{ showForm ? '' : '' }}</span>
+    </button>
+    <h3 class="text-center" style="margin-top: 20px;">Announcements</h3>
+    <form *ngIf="showForm" (submit)="saveAnnouncement()" class="p-3 border rounded" style="margin-bottom: 10px; transform: scale(0.9);">
+      <div class="announcement-details row">
+        <div class="form-group col-md-12">
+          <textarea id="text" name="text" [(ngModel)]="announcement.text" class="form-control" placeholder="Announce something..." style="height: 187px;"></textarea>
+        </div>
+        <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-primary float-end">Post</button>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Display the list of announcements -->
+    <div class="announcements-list bg-white p-3 rounded mb-3 col-12 d-flex align-items-center justify-content-center ">
+      <ul class="list-group">
+        <li *ngFor="let item of announcements" class="list-group-item form-control">
+          <div class="announcement-item">
+            <p class="announcement-text">{{ item.text }}</p>
+            <p class="post-date text-muted">{{ item.timestamp | timestamp }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

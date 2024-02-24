@@ -1,0 +1,84 @@
+<div class="requests-container">
+    <div class="row">
+        <div class="text-center">
+            <h2>Document Requests Processing</h2>
+        </div>
+    </div>
+    <div class="header">
+        <div class="row">
+            <div class="col">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link pend" style="color: cornflowerblue;" (click)="setActiveTab('pending')" [class.active]="isTabActive('pending')">Pending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link app" style="color: rgb(39, 104, 39);" (click)="setActiveTab('approve')" [class.active]="isTabActive('approve')">Approved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rej" style="color: rgb(173, 48, 39);" (click)="setActiveTab('reject')" [class.active]="isTabActive('reject')">Rejected</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="searchbar input-group">
+                    <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchInput" (input)="onSearchInput()" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary search" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="position: relative; top: 20px; width: 100%;">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Requester</th>
+                                <th>Form Type</th>
+                                <th>Date Filed</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let request of getRequestsByStatus()">
+                                <td>
+                                    <div class="avatar">
+                                        <img [src]="'assets/images/user_icon.png'" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="requester">
+                                        <p>{{request.name}}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="info-container">
+                                        <p>{{request.formType}}<p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="datefiled">
+                                        <p>{{request.timestamp}}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="status" [ngStyle]="{'color': getStatusColor(request.status)}">
+                                        <p>{{request.status}}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="buttons-container">
+                                        <button class="btn btn-primary view" (click)="toggleContent(request)">View</button>
+                                        <button class="btn btn-success approve" (click)="approveRequest(request.id)">Approve</button>
+                                        <button class="btn btn-danger reject" (click)="rejectRequest(request.id)">Reject</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

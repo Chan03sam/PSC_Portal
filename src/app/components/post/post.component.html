@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="postcontainer bg-light p-3 border rounded">
+        <div class="post-heading bg-white p-2 rounded mb-3">
+            <p class="font-weight-bold"><i class="fa-solid fa-pen-to-square"></i> Posts</p>
+        </div>
+        <div class="posting-area bg-white p-3 rounded mb-3">
+            <div class="user d-flex align-items-center">
+                <img *ngIf="profileImageURL; else tempUserIcon" [src]="profileImageURL" alt="Profile Image" class="rounded-circle border-orange mr-3">
+                <ng-template #tempUserIcon>
+                    <img src="/assets/images/user_icon.png" alt="Temporary User Icon" class="rounded-circle border-orange mr-3">
+                </ng-template>
+            </div>
+            <textarea class="form-control post-textarea" [(ngModel)]="postContent" placeholder="Write your post..."></textarea>
+            <button class="btn btn-primary postbutton" (click)="addPost()"> <i class="fa-solid fa-paper-plane"></i> Post</button>
+        </div>
+        <div *ngFor="let post of posts">
+            <div class="posted-container bg-white p-3 rounded mb-3">
+                <img *ngIf="post.userProfileImageURL; else tempUserIcon" [src]="post.userProfileImageURL" alt="Profile Image" class="rounded-circle border-orange mr-3">
+                <ng-template #tempUserIcon>
+                    <img src="/assets/images/user_icon.png" alt="Temporary User Icon" class="rounded-circle border-orange mr-3">
+                </ng-template>
+                <p class="post-owner font-weight-bold">{{ post.userName }}</p>
+                <p class="post-content bg-light rounded p-2">{{ post.postContent }}</p>
+                <p class="post-date text-muted">{{ post.timestamp | timestamp }}</p>
+                <button class="btn btn-danger delete-post" (click)="deletePost(post)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
