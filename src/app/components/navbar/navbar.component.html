@@ -5,89 +5,85 @@
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <!-- Default tabs outside ngSwitch -->
         <ul class="navbar-nav">
           <li class="nav-item" [class.active]="isActive('/')">
             <a class="nav-link" routerLink="/">Home</a>
           </li>
-          <li class="nav-item" [class.active]="isActive('/about')">
-            <a class="nav-link" routerLink="/about">About Us</a>
+          <!--User Nav-->
+          <li *ngIf="authService.isAuthenticated() && authService.role === 'user'" class="nav-item user-tab"
+              [class.active]="isActive('/forms')" (click)="setActive('/forms')">
+              <a class="nav-link" routerLink="/forms">Forms</a>
           </li>
-        </ul>
-  
-        <!-- ngSwitch starts here -->
-        <div *ngIf="authService.isAuthenticated()">
-          <ul class="navbar-nav">
-            <!-- Add a common class to all user-specific tabs -->
-            <li *ngIf="authService.role === 'user'" class="nav-item user-tab" [class.active]="isActive('/forms')"
-              (click)="setActive('/forms')">
-              <a class="nav-link" routerLink="/forms">Forms</a>
-            </li>
-            <li *ngIf="authService.role === 'user'" class="nav-item user-tab" [class.active]="isActive('/history')"
-              (click)="setActive('/history')">
+          <li *ngIf="authService.isAuthenticated() && authService.role === 'user'" class="nav-item user-tab"
+              [class.active]="isActive('/history')" (click)="setActive('/history')">
               <a class="nav-link" routerLink="/history">History</a>
-            </li>
-  
-            <!-- Add other user-specific tabs here -->
-            <li *ngIf="authService.role === 'admin'" class="nav-item admin-tab" [class.active]="isActive('/forms')"
-              (click)="setActive('/forms')">
-              <a class="nav-link" routerLink="/forms">Forms</a>
-            </li>
-            <li *ngIf="authService.role === 'admin'" class="nav-item admin-tab" [class.active]="isActive('/history')"
-              (click)="setActive('/history')">
-              <a class="nav-link" routerLink="/history">History</a>
-            </li>
-            <li *ngIf="authService.role === 'admin'" class="nav-item admin-tab" [class.active]="isActive('/dashboard')"
-              (click)="setActive('/dashboard')">
-              <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-            </li>
-            <li *ngIf="authService.role === 'admin'" class="nav-item admin-tab" [class.active]="isActive('/requests')"
-              (click)="setActive('/requests')">
-              <a class="nav-link" routerLink="/requests">Requests</a>
-            </li>
-            <li *ngIf="authService.role === 'admin'" class="nav-item admin-tab" [class.active]="isActive('/employee-accounts')"
-              (click)="setActive('/employee-accounts')">
-              <a class="nav-link" routerLink="/employee-accounts">E.Accounts</a>
-            </li>
-            <li *ngIf="authService.role === 'admin'" class="nav-item admin-tab" [class.active]="isActive('/user-accounts')"
-              (click)="setActive('/user-accounts')">
-              <a class="nav-link" routerLink="/user-accounts">U.Accounts</a>
-            </li>
+          </li>
+          <!--Admin Nav-->
+          <li *ngIf="authService.isAuthenticated() && authService.role === 'admin'" class="nav-item admin-tab"
+          [class.active]="isActive('/forms')" (click)="setActive('/forms')">
+          <a class="nav-link" routerLink="/forms">Forms</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'admin'" class="nav-item admin-tab"
+          [class.active]="isActive('/history')" (click)="setActive('/history')">
+          <a class="nav-link" routerLink="/history">History</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'admin'" class="nav-item admin-tab"
+          [class.active]="isActive('/dashboard')" (click)="setActive('/dashboard')">
+          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'admin'" class="nav-item admin-tab"
+          [class.active]="isActive('/requests')" (click)="setActive('/requests')">
+          <a class="nav-link" routerLink="/requests">Requests</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'admin'" class="nav-item admin-tab"
+        [class.active]="isActive('/employee-accounts')" (click)="setActive('/employee-accounts')">
+          <a class="nav-link" routerLink="/employee-accounts">E.Accounts</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'admin'" class="nav-item admin-tab"
+          [class.active]="isActive('/user-accounts')" (click)="setActive('/user-accounts')">
+          <a class="nav-link" routerLink="/user-accounts">U.Accounts</a>
+        </li>
 
-            <!-- Add other admin-specific tabs here -->
-            <li *ngIf="authService.role === 'superadmin'" class="nav-item admin-tab" [class.active]="isActive('/forms')"
-              (click)="setActive('/forms')">
-              <a class="nav-link" routerLink="/forms">Forms</a>
-            </li>
-            <li *ngIf="authService.role === 'superadmin'" class="nav-item admin-tab" [class.active]="isActive('/history')"
-              (click)="setActive('/history')">
-              <a class="nav-link" routerLink="/history">History</a>
-            </li>
-            <li *ngIf="authService.role === 'superadmin'" class="nav-item admin-tab" [class.active]="isActive('/dashboard')"
-              (click)="setActive('/dashboard')">
-              <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-            </li>
-            <li *ngIf="authService.role === 'superadmin'" class="nav-item admin-tab" [class.active]="isActive('/requests')"
-              (click)="setActive('/requests')">
-              <a class="nav-link" routerLink="/requests">Requests</a>
-            </li>
-            <li *ngIf="authService.role === 'superadmin'" class="nav-item admin-tab" [class.active]="isActive('/employee-accounts')"
-              (click)="setActive('/employee-accounts')">
-              <a class="nav-link" routerLink="/employee-accounts">E.Accounts</a>
-            </li>
-            <li *ngIf="authService.role === 'superadmin'" class="nav-item admin-tab" [class.active]="isActive('/user-accounts')"
-              (click)="setActive('/user-accounts')">
-              <a class="nav-link" routerLink="/user-accounts">U.Accounts</a>
-            </li>
-            <li *ngIf="authService.role === 'superadmin'" class="nav-item superadmin-tab" [class.active]="isActive('/audit-trail')"
-              (click)="setActive('/audit-trail')">
-              <a class="nav-link" routerLink="/audit-trail">Audit Trail</a>
-            </li>
-          </ul>
-        </div>
+      <!--Superadmin Nav-->
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'superadmin'" class="nav-item superadmin-tab"
+          [class.active]="isActive('/forms')" (click)="setActive('/forms')">
+          <a class="nav-link" routerLink="/forms">Forms</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'superadmin'" class="nav-item superadmin-tab"
+          [class.active]="isActive('/history')" (click)="setActive('/history')">
+          <a class="nav-link" routerLink="/history">History</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'superadmin'" class="nav-item superadmin-tab"
+          [class.active]="isActive('/dashboard')" (click)="setActive('/fdashboard')">
+          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'superadmin'" class="nav-item superadmin-tab"
+          [class.active]="isActive('/requests')" (click)="setActive('/requests')">
+          <a class="nav-link" routerLink="/requests">Requests</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'superadmin'" class="nav-item superadmin-tab"
+        [class.active]="isActive('/employee-accounts')" (click)="setActive('/employee-accounts')">
+          <a class="nav-link" routerLink="/employee-accounts">E.Accounts</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'superadmin'" class="nav-item superadmin-tab"
+          [class.active]="isActive('/user-accounts')" (click)="setActive('/user-accounts')">
+          <a class="nav-link" routerLink="/user-accounts">U.Accounts</a>
+        </li>
+        <li *ngIf="authService.isAuthenticated() && authService.role === 'superadmin'" class="nav-item superadmin-tab"
+          [class.active]="isActive('/audit-trail')" (click)="setActive('/audit-trail')">
+          <a class="nav-link" routerLink="/audit-trail">Audit Trail</a>
+        </li>
+        <li class="nav-item" [class.active]="isActive('/about')">
+          <a class="nav-link" routerLink="/about">About Us</a>
+        </li>
+        </ul>
+        
+        <div class="d-flex">
         <div class="signin">
-          <button mat-raised-button color="primary" *ngIf="!authService.isAuthenticated()" (click)="openLoginModal()">
+          <div class="col-10"></div>
+          <button class="col-1" mat-raised-button color="primary" *ngIf="!authService.isAuthenticated()" (click)="openLoginModal()">
             Sign In
           </button>
           <div *ngIf="authService.isAuthenticated()">
@@ -110,6 +106,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </nav>

@@ -86,7 +86,6 @@ export class RequestsComponent {
         console.error('Error rejecting request:', error);
       });
   }
-  /*
   pendRequest(requestId: string) {
     this.requestService.updateRequestStatus(requestId, 'pending')
       .then(() => {
@@ -95,7 +94,7 @@ export class RequestsComponent {
       .catch(error => {
         console.error('Error rejecting request:', error);
       });
-  }*/
+  }
 
   setActiveTab(tab: string): void {
     this.activeTab = tab;
