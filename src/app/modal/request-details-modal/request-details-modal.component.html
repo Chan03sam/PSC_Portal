@@ -30,6 +30,7 @@
             <p>Purpose of request: {{ request.purpose }}</p>
             <p>RequestID: {{ request.id }}</p>
             <p>Status: {{ request.status }}</p>
+            <p>Form: {{ request.formType }}</p>
         </div>
         <div class="form" *ngIf="request.formType == 'Business Clearance'" >
             <p>User: {{ request.name }}</p>

@@ -6,6 +6,10 @@ import { Post } from 'src/app/models/post.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileService } from 'src/app/shared/profile.service';
 import { RequestDetailsModalComponent } from 'src/app/modal/request-details-modal/request-details-modal.component';
+import { PDFDocument, rgb} from 'pdf-lib';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import * as FileSaver from 'file-saver';
+import { switchMap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-requests',
@@ -23,7 +27,8 @@ export class RequestsComponent {
 
   constructor(
     private requestService: RequestService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private firestore: AngularFirestore) {
     this.fetchRequests();
   }
 
@@ -67,14 +72,67 @@ export class RequestsComponent {
     });
 }
 
-  approveRequest(requestId: string) {
-    this.requestService.updateRequestStatus(requestId, 'approve')
-      .then(() => {
-        this.fetchRequests(); // Refresh the requests after approval
-      })
-      .catch(error => {
-        console.error('Error approving request:', error);
-      });
+async approveRequest(requestId: string) {
+  this.requestService.updateRequestStatus(requestId, 'approve')
+    .then(() => {
+      this.getRequestById(requestId)
+        .pipe(
+          take(1), // Take only one emission
+          switchMap(async (request: any) => {
+            if (request && request.formType == 'Barangay Clearance') {
+              const generatedPdf = await this.requestService.generateBrgyClearancePdf(request);
+              this.savePdf(generatedPdf, 'approved_barangay_clearance_request.pdf');
+              console.log('PDF generated and savePdf function called');
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Business Clearance') {
+              const generatedPdf = await this.requestService.generateBusinessClearancePdf(request);
+              this.savePdf(generatedPdf, 'approved_business_clearance_request.pdf');
+              console.log('PDF generated and savePdf function called');
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Indigency') {
+              const generatedPdf = await this.requestService.generateIndigencyPdf(request);
+              this.savePdf(generatedPdf, 'approved_indegency_request.pdf');
+              console.log('PDF generated and savePdf function called');
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Cohabitation') {
+              const generatedPdf = await this.requestService.generateCohabitationPdf(request);
+              this.savePdf(generatedPdf, 'approved_cohabitation_request.pdf');
+              console.log('PDF generated and savePdf function called');
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Residency') {
+              const generatedPdf = await this.requestService.generateResidencyPdf(request);
+              this.savePdf(generatedPdf, 'approved_residency_request.pdf');
+              console.log('PDF generated and savePdf function called');
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Good-Moral') {
+              const generatedPdf = await this.requestService.generateGoodmoralPdf(request);
+              this.savePdf(generatedPdf, 'approved_goodmoral_request.pdf');
+              console.log('PDF generated and savePdf function called');
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Guardianship') {
+              const generatedPdf = await this.requestService.generateGuardianshipPdf(request);
+              this.savePdf(generatedPdf, 'approved_guardianship_request.pdf');
+              console.log('PDF generated and savePdf function called');
+              this.fetchRequests(); // Refresh the requests after approval
+            } else {
+              console.error('Invalid request object:', request);
+            }
+          })
+        )
+        .subscribe();
+    })
+    .catch(error => {
+      console.error('Error approving request:', error);
+    });
+}
+  getRequestById(requestId: string): Observable<any> {
+    return this.firestore.collection('requests').doc(requestId).valueChanges({ idField: 'id' });
   }
   
   rejectRequest(requestId: string) {
@@ -85,6 +143,15 @@ export class RequestsComponent {
       .catch(error => {
         console.error('Error rejecting request:', error);
       });
+  }
+  savePdf(pdfBytes: Uint8Array, fileName: string): void {
+    try {
+      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      FileSaver.saveAs(blob, fileName);
+      console.log('PDF file saved successfully!');
+    } catch (error) {
+      console.error('Error saving PDF file:', error);
+    }
   }
   pendRequest(requestId: string) {
     this.requestService.updateRequestStatus(requestId, 'pending')
@@ -128,6 +195,5 @@ export class RequestsComponent {
             return 'black';
     }
 }
-  
 }
   
