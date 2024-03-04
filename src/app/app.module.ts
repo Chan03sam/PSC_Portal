@@ -49,6 +49,7 @@ import { BrgyClearanceComponent } from './components/certs/brgy-clearance/brgy-c
 import { CommonModule } from '@angular/common';
 import { RequestDetailsModalComponent } from './modal/request-details-modal/request-details-modal.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 
 const firebaseConfig = {
   apiKey: "AIzaSyATZzZihKVOQna8Uv_4cqN1Gimu3KBgl7Q",
@@ -115,6 +116,7 @@ AngularFireAuthModule,
     NgxSpinnerModule,
     NoopAnimationsModule,
     HttpClientModule,
+    AngularFireMessagingModule,
   ],
   providers: [
     DatePipe

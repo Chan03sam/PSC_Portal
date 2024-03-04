@@ -9,7 +9,8 @@ import { RequestDetailsModalComponent } from 'src/app/modal/request-details-moda
 import { PDFDocument, rgb} from 'pdf-lib';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import * as FileSaver from 'file-saver';
-import { switchMap, take } from 'rxjs/operators';
+import { switchMap, take, finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-requests',
@@ -28,7 +29,9 @@ export class RequestsComponent {
   constructor(
     private requestService: RequestService,
     private dialog: MatDialog,
-    private firestore: AngularFirestore) {
+    private firestore: AngularFirestore,
+    private storage: AngularFireStorage,
+    ) {
     this.fetchRequests();
   }
 
@@ -74,54 +77,65 @@ export class RequestsComponent {
 
 async approveRequest(requestId: string) {
   this.requestService.updateRequestStatus(requestId, 'approve')
-    .then(() => {
-      this.getRequestById(requestId)
-        .pipe(
-          take(1), // Take only one emission
-          switchMap(async (request: any) => {
+  .then(() => {
+    this.getRequestById(requestId)
+      .pipe(
+        take(1),
+        switchMap(async (request: any) => {
+          let fileName: string;
+
+          if (request && request.name) {
+            // Append timestamp to the file name
+            const timestamp = new Date().getTime();
+            fileName = `${request.name.replace(/\s/g, '_')}_approved_${timestamp}.pdf`;
+          } else {
+            console.error('Invalid request object:', request);
+            return;
+          }
+
             if (request && request.formType == 'Barangay Clearance') {
               const generatedPdf = await this.requestService.generateBrgyClearancePdf(request);
-              this.savePdf(generatedPdf, 'approved_barangay_clearance_request.pdf');
-              console.log('PDF generated and savePdf function called');
+              const downloadURL = await this.uploadPdfToStorage(generatedPdf, fileName);
+              this.uploadPdfToStorage(generatedPdf, fileName);
               this.fetchRequests(); // Refresh the requests after approval
             }
             if (request && request.formType == 'Business Clearance') {
               const generatedPdf = await this.requestService.generateBusinessClearancePdf(request);
-              this.savePdf(generatedPdf, 'approved_business_clearance_request.pdf');
-              console.log('PDF generated and savePdf function called');
+              const downloadURL = await this.uploadPdfToStorage(generatedPdf, fileName);
+              this.uploadPdfToStorage(generatedPdf, fileName);
               this.fetchRequests(); // Refresh the requests after approval
             }
             if (request && request.formType == 'Certificate of Indigency') {
               const generatedPdf = await this.requestService.generateIndigencyPdf(request);
-              this.savePdf(generatedPdf, 'approved_indegency_request.pdf');
-              console.log('PDF generated and savePdf function called');
+              const downloadURL = await this.uploadPdfToStorage(generatedPdf, fileName);
+              this.uploadPdfToStorage(generatedPdf, fileName);
               this.fetchRequests(); // Refresh the requests after approval
             }
             if (request && request.formType == 'Certificate of Cohabitation') {
               const generatedPdf = await this.requestService.generateCohabitationPdf(request);
-              this.savePdf(generatedPdf, 'approved_cohabitation_request.pdf');
-              console.log('PDF generated and savePdf function called');
+              const downloadURL = await this.uploadPdfToStorage(generatedPdf, fileName);
+              this.uploadPdfToStorage(generatedPdf, fileName);
               this.fetchRequests(); // Refresh the requests after approval
             }
             if (request && request.formType == 'Certificate of Residency') {
               const generatedPdf = await this.requestService.generateResidencyPdf(request);
-              this.savePdf(generatedPdf, 'approved_residency_request.pdf');
-              console.log('PDF generated and savePdf function called');
+              const downloadURL = await this.uploadPdfToStorage(generatedPdf, fileName);
+              this.uploadPdfToStorage(generatedPdf, fileName);
               this.fetchRequests(); // Refresh the requests after approval
             }
             if (request && request.formType == 'Certificate of Good-Moral') {
               const generatedPdf = await this.requestService.generateGoodmoralPdf(request);
-              this.savePdf(generatedPdf, 'approved_goodmoral_request.pdf');
-              console.log('PDF generated and savePdf function called');
+              const downloadURL = await this.uploadPdfToStorage(generatedPdf, fileName);
+              this.uploadPdfToStorage(generatedPdf, fileName);
               this.fetchRequests(); // Refresh the requests after approval
             }
             if (request && request.formType == 'Certificate of Guardianship') {
               const generatedPdf = await this.requestService.generateGuardianshipPdf(request);
-              this.savePdf(generatedPdf, 'approved_guardianship_request.pdf');
-              console.log('PDF generated and savePdf function called');
+              const downloadURL = await this.uploadPdfToStorage(generatedPdf, fileName);
+              this.uploadPdfToStorage(generatedPdf, fileName);
               this.fetchRequests(); // Refresh the requests after approval
             } else {
-              console.error('Invalid request object:', request);
+              console.log('Invalid request object:', JSON.parse(JSON.stringify(request)));
             }
           })
         )
@@ -131,9 +145,32 @@ async approveRequest(requestId: string) {
       console.error('Error approving request:', error);
     });
 }
+
+  private async uploadPdfToStorage(pdfBytes: Uint8Array, fileName: string): Promise<string> {
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const storageRef = this.storage.ref(`Approved_requests/${fileName}`);
+    const uploadTask = storageRef.put(blob);
+
+    return new Promise<string>((resolve, reject) => {
+      uploadTask.snapshotChanges().pipe(
+        finalize(async () => {
+          try {
+            const downloadURL = await storageRef.getDownloadURL().toPromise();
+            console.log('PDF file uploaded successfully!', downloadURL);
+            resolve(downloadURL);
+          } catch (error) {
+            console.error('Error getting download URL:', error);
+            reject(error);
+          }
+        })
+      ).subscribe();
+    });
+  }
+
   getRequestById(requestId: string): Observable<any> {
     return this.firestore.collection('requests').doc(requestId).valueChanges({ idField: 'id' });
   }
+
   
   rejectRequest(requestId: string) {
     this.requestService.updateRequestStatus(requestId, 'reject')
@@ -195,5 +232,6 @@ async approveRequest(requestId: string) {
             return 'black';
     }
 }
+
 }
   
