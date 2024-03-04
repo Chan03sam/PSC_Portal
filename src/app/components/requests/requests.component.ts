@@ -145,10 +145,100 @@ async approveRequest(requestId: string) {
       console.error('Error approving request:', error);
     });
 }
+async rejectRequest(requestId: string) {
+  this.requestService.updateRequestStatus(requestId, 'reject')
+  .then(() => {
+    this.getRequestById(requestId)
+      .pipe(
+        take(1),
+        switchMap(async (request: any) => {
+          let fileName: string;
+
+          if (request && request.name) {
+            // Append timestamp to the file name
+            const timestamp = new Date().getTime();
+            fileName = `${request.name.replace(/\s/g, '_')}_rejected_${timestamp}.pdf`;
+          } else {
+            console.error('Invalid request object:', request);
+            return;
+          }
+
+            if (request && request.formType == 'Barangay Clearance') {
+              const generatedPdf = await this.requestService.generateBrgyClearancePdf(request);
+              const downloadURL = await this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Business Clearance') {
+              const generatedPdf = await this.requestService.generateBusinessClearancePdf(request);
+              const downloadURL = await this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Indigency') {
+              const generatedPdf = await this.requestService.generateIndigencyPdf(request);
+              const downloadURL = await this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Cohabitation') {
+              const generatedPdf = await this.requestService.generateCohabitationPdf(request);
+              const downloadURL = await this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Residency') {
+              const generatedPdf = await this.requestService.generateResidencyPdf(request);
+              const downloadURL = await this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Good-Moral') {
+              const generatedPdf = await this.requestService.generateGoodmoralPdf(request);
+              const downloadURL = await this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.fetchRequests(); // Refresh the requests after approval
+            }
+            if (request && request.formType == 'Certificate of Guardianship') {
+              const generatedPdf = await this.requestService.generateGuardianshipPdf(request);
+              const downloadURL = await this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.uploadrejectPdfToStorage(generatedPdf, fileName);
+              this.fetchRequests(); // Refresh the requests after approval
+            } else {
+              console.log('Invalid request object:', JSON.parse(JSON.stringify(request)));
+            }
+          })
+        )
+        .subscribe();
+    })
+    .catch(error => {
+      console.error('Error approving request:', error);
+    });
+}
 
   private async uploadPdfToStorage(pdfBytes: Uint8Array, fileName: string): Promise<string> {
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
     const storageRef = this.storage.ref(`Approved_requests/${fileName}`);
+    const uploadTask = storageRef.put(blob);
+
+    return new Promise<string>((resolve, reject) => {
+      uploadTask.snapshotChanges().pipe(
+        finalize(async () => {
+          try {
+            const downloadURL = await storageRef.getDownloadURL().toPromise();
+            console.log('PDF file uploaded successfully!', downloadURL);
+            resolve(downloadURL);
+          } catch (error) {
+            console.error('Error getting download URL:', error);
+            reject(error);
+          }
+        })
+      ).subscribe();
+    });
+  }
+  private async uploadrejectPdfToStorage(pdfBytes: Uint8Array, fileName: string): Promise<string> {
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const storageRef = this.storage.ref(`Rejected_requests/${fileName}`);
     const uploadTask = storageRef.put(blob);
 
     return new Promise<string>((resolve, reject) => {
@@ -171,16 +261,6 @@ async approveRequest(requestId: string) {
     return this.firestore.collection('requests').doc(requestId).valueChanges({ idField: 'id' });
   }
 
-  
-  rejectRequest(requestId: string) {
-    this.requestService.updateRequestStatus(requestId, 'reject')
-      .then(() => {
-        this.fetchRequests(); // Refresh the requests after rejection
-      })
-      .catch(error => {
-        console.error('Error rejecting request:', error);
-      });
-  }
   savePdf(pdfBytes: Uint8Array, fileName: string): void {
     try {
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
