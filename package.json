@@ -22,7 +22,9 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@auth0/angular-jwt": "^5.2.0",
+    "angular-plotly.js": "^5.2.2",
     "bootstrap": "^5.3.2",
+    "chart.js": "^3.8.0",
     "docxtemplater": "^3.42.2",
     "file-saver": "^2.0.5",
     "firebase": "^10.5.2",
@@ -30,6 +32,7 @@
     "mammoth": "^1.6.0",
     "ngx-spinner": "^16.0.2",
     "pdf-lib": "^1.17.1",
+    "plotly.js": "^2.30.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

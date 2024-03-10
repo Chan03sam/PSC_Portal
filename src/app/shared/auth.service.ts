@@ -269,17 +269,17 @@ async getProfileImageURL(userEmail: string): Promise<string | undefined> {
     });
     this.fireauth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       .then(() => {
-        return this.fireauth.signInWithEmailAndPassword(this.email, this.password);
+        return this.fireauth.signInWithEmailAndPassword(this.email.trim(), this.password);
       })
       .catch((error) => {
-        console.error('Error setting persistence:', error);
+        //console.error('Error setting persistence:', error);
       });
   }
 
   //register method
   async register(email: string, password: string) {
     try {
-      const userCredential = await this.fireauth.createUserWithEmailAndPassword(email, password);
+      const userCredential = await this.fireauth.createUserWithEmailAndPassword(email.trim(), password);
       const user = userCredential.user;
       
       if (user) {

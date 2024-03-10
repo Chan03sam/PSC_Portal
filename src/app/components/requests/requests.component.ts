@@ -227,6 +227,7 @@ async rejectRequest(requestId: string) {
           try {
             const downloadURL = await storageRef.getDownloadURL().toPromise();
             console.log('PDF file uploaded successfully!', downloadURL);
+            alert(downloadURL);
             resolve(downloadURL);
           } catch (error) {
             console.error('Error getting download URL:', error);

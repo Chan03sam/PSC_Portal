@@ -50,6 +50,9 @@ import { CommonModule } from '@angular/common';
 import { RequestDetailsModalComponent } from './modal/request-details-modal/request-details-modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { getMessaging, getToken } from 'firebase/messaging';
+import { Component, OnInit } from '@angular/core';
+import { NotificationService } from './services/notification.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyATZzZihKVOQna8Uv_4cqN1Gimu3KBgl7Q",
@@ -123,4 +126,16 @@ AngularFireAuthModule,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule implements OnInit {
+  constructor(private notificationService: NotificationService) {}
+
+  ngOnInit() {
+    this.notificationService.requestPermission();
+    
+    // Subscribe to receiveMessage
+    this.notificationService.receiveMessage().subscribe((message) => {
+      console.log('Received message in AppModule:', message);
+      // Handle the message as needed
+    });
+  }
+}

@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ChangeDetectorRef } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
