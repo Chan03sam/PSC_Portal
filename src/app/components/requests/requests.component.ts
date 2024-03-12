@@ -271,7 +271,7 @@ async rejectRequest(requestId: string) {
       console.error('Error saving PDF file:', error);
     }
   }
-  pendRequest(requestId: string) {
+  /*pendRequest(requestId: string) {
     this.requestService.updateRequestStatus(requestId, 'pending')
       .then(() => {
         this.fetchRequests(); // Refresh the requests after rejection
@@ -279,7 +279,7 @@ async rejectRequest(requestId: string) {
       .catch(error => {
         console.error('Error rejecting request:', error);
       });
-  }
+  }*/
 
   setActiveTab(tab: string): void {
     this.activeTab = tab;

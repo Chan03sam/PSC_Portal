@@ -16,7 +16,10 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-
+@font-face {
+    font-family: 'digitalfont';
+    src: url('assets/digital-7/digifont.ttf');
+}
 body{
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

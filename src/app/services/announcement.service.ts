@@ -30,4 +30,10 @@ export class AnnouncementService {
   addAnnouncement(announcement: Announcement): Promise<any> {
     return this.announcementsCollection.add(announcement);
   }
+
+  getAnnouncementCount(): Observable<number> {
+    return this.firestore.collection('announcements').get().pipe(
+      map(snapshot => snapshot.size)
+    );
+  }
 }

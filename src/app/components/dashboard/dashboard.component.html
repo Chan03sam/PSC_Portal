@@ -1,33 +1,54 @@
 <div class="dashboard-container">
     <div class="wrapper">
-        <div class="container row w-50">
-            <div class="row">
-                <div class="col">
+      <div class="container">
 
+        <div class="row text-center ">
+            <div class="col-md-6 chart">
+              <div class="card">
+                <div class="card-body">
+                  <canvas #totalUsersChartCanvas></canvas>
                 </div>
-                <div class="col">
-    
-                </div>
+              </div>
             </div>
-            <div class="row">
-                <div class="col">
 
+            <div class="col-md-6 digiclock">
+              <div class="card digicard">
+                <div class="card-body">
+                  <div class="clock-container clock" #digitalClock>
                 </div>
-                <div class="col">
-    
-                </div>
-            </div>
-            <div class="row">
-                <div class="col ">
-
-                </div>
-                <div class="col">
-    
-                </div>
+              </div>
             </div>
         </div>
+  
         <div class="row">
-
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body donut">
+                <h2>Pending Requests</h2>
+                <canvas #pendingRequestsChartCanvas></canvas>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body donut">
+                <h2>Approved Requests</h2>
+                <canvas #approvedRequestsChartCanvas></canvas>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body donut">
+                <h2>Rejected Requests</h2>
+                <canvas #rejectedRequestsChartCanvas></canvas>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  

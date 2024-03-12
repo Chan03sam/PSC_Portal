@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Observable } from 'rxjs';
 import { MyEvent } from '../models/event.model';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,5 +53,11 @@ export class EventService {
 
     // Return a void promise
     return Promise.resolve();
+  }
+
+  getEventCount(): Observable<number> {
+    return this.firestore.collection('events').get().pipe(
+      map(snapshot => snapshot.size)
+    );
   }
 }

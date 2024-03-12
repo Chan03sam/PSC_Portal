@@ -54,6 +54,7 @@ import { getMessaging, getToken } from 'firebase/messaging';
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from './services/notification.service';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyATZzZihKVOQna8Uv_4cqN1Gimu3KBgl7Q",
   authDomain: "myangu.firebaseapp.com",

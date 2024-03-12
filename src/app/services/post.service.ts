@@ -69,4 +69,9 @@ export class PostService {
       throw error; // Re-throw the error to be caught in the component
     }
   }
+  getPostCount(): Observable<number> {
+    return this.firestore.collection('posts').get().pipe(
+      map(snapshot => snapshot.size)
+    );
+  }
 }

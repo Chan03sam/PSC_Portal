@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { HttpClient } from '@angular/common/http';
-import { PDFDocument, rgb, PDFFont, StandardFontEmbedder} from 'pdf-lib';
+import { PDFDocument, rgb} from 'pdf-lib';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { map } from 'rxjs/operators'; 
 
 @Injectable({
   providedIn: 'root'
@@ -204,6 +205,29 @@ export class RequestService {
     // Save the modified PDF as a Uint8Array
     const modifiedPdfBytes = await pdfDoc.save();
     return new Uint8Array(modifiedPdfBytes.buffer);
+  }
+  
+  getAllRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests').valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+  getPendingRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('status', '==', 'pending')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+
+  getRejectedRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('status', '==', 'reject')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+
+  getApprovedRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('status', '==', 'approve')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
   }
 }
 

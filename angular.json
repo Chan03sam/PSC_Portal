@@ -25,12 +25,12 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css",
               "node_modules/ngx-spinner/animations/ball-scale-multiple.css"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
+              "./node_modules/chart.js/dist/chart.js"
             ],
             "allowedCommonJsDependencies": ["docxtemplater", "file-saver", "jszip"]
           },
@@ -89,10 +89,11 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "./node_modules/chart.js/dist/chart.js"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ]
           }
