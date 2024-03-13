@@ -172,62 +172,76 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       new Chart(pendingRequestsChartCtx, {
         type: 'doughnut',
         data: {
-          labels: ['Pending Requests', 'Total Requests - Pending'],
-          datasets: [{
-            label: 'Pending Requests',
-            data: [this.totalPendingRequests, this.totalRequests - this.totalPendingRequests],
-            backgroundColor: [
-              'rgba(54, 162, 235, 0.5)', // Blue for pending requests
-              'rgba(255, 165, 0, 0.5)', // Gray for total requests - pending
-            ],
-            borderColor: [
-              'rgba(54, 162, 235, 1)', // Blue for pending requests
-              'rgba(255, 165, 0, 1)', // Gray for total requests - pending
-            ],
-            borderWidth: 1,
-          }],
+            labels: ['Pending Requests', 'Total Requests - Pending'],
+            datasets: [{
+                label: 'Pending Requests',
+                data: [this.totalPendingRequests, this.totalRequests - this.totalPendingRequests],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.5)', // Blue for pending requests
+                    'rgba(255, 165, 0, 0.5)', // Gray for total requests - pending
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)', // Blue for pending requests
+                    'rgba(255, 165, 0, 1)', // Gray for total requests - pending
+                ],
+                borderWidth: 1,
+            }],
         },
-      });
-      
-      new Chart(approvedRequestsChartCtx, {
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+    
+    new Chart(approvedRequestsChartCtx, {
         type: 'doughnut',
         data: {
-          labels: ['Approved Requests', 'Total Requests - Approved'],
-          datasets: [{
-            label: 'Approved Requests',
-            data: [this.totalApprovedRequests, this.totalRequests - this.totalApprovedRequests],
-            backgroundColor: [
-              'rgba(75, 192, 192, 0.5)', // Green for approved requests
-              'rgba(255, 165, 0, 0.5)', // Gray for total requests - approved
-            ],
-            borderColor: [
-              'rgba(75, 192, 192, 1)', // Green for approved requests
-              'rgba(255, 165, 0, 1)', // Gray for total requests - approved
-            ],
-            borderWidth: 1,
-          }],
+            labels: ['Approved Requests', 'Total Requests - Approved'],
+            datasets: [{
+                label: 'Approved Requests',
+                data: [this.totalApprovedRequests, this.totalRequests - this.totalApprovedRequests],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.5)', // Green for approved requests
+                    'rgba(255, 165, 0, 0.5)', // Gray for total requests - approved
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)', // Green for approved requests
+                    'rgba(255, 165, 0, 1)', // Gray for total requests - approved
+                ],
+                borderWidth: 1,
+            }],
         },
-      });
-      
-      new Chart(rejectedRequestsChartCtx, {
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+    
+    new Chart(rejectedRequestsChartCtx, {
         type: 'doughnut',
         data: {
-          labels: ['Rejected Requests', 'Total Requests - Rejected'],
-          datasets: [{
-            label: 'Rejected Requests',
-            data: [this.totalRejectedRequests, this.totalRequests - this.totalRejectedRequests],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.5)', // Red for rejected requests
-              'rgba(255, 165, 0, 0.5)', // Gray for total requests - rejected
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)', // Red for rejected requests
-              'rgba(255, 165, 0, 1)', // Gray for total requests - rejected
-            ],
-            borderWidth: 1,
-          }],
+            labels: ['Rejected Requests', 'Total Requests - Rejected'],
+            datasets: [{
+                label: 'Rejected Requests',
+                data: [this.totalRejectedRequests, this.totalRequests - this.totalRejectedRequests],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)', // Red for rejected requests
+                    'rgba(255, 165, 0, 0.5)', // Gray for total requests - rejected
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)', // Red for rejected requests
+                    'rgba(255, 165, 0, 1)', // Gray for total requests - rejected
+                ],
+                borderWidth: 1,
+            }],
         },
-      });
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+    
+    
       
 
  new Chart(radarChartCtx, {

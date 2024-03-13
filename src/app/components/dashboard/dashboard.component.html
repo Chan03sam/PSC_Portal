@@ -3,15 +3,15 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-md-4"></div>
-          <div class="col-md-4 digiclock">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 digiclock">
             <div class="card digicard">
               <div class="card-body">
                 <div class="clock-container clock" #digitalClock>
               </div>
             </div>
           </div>
-          <div class="col-md-4"></div>
+          <div class="col-md-3"></div>
         </div>
 
         <div class="row text-center">
@@ -23,11 +23,11 @@
               </div>
             </div>
 
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-body">
-                  <h2>Data Overview (Radar Chart)</h2>
-                  <canvas #radarChartCanvas></canvas>
+            <div class="col-md-6 radar">
+              <div class="card radar">
+                <div class="card-body radar">
+                  <p>Data Overview (Radar Chart)</p>
+                  <canvas class="radarcan" #radarChartCanvas></canvas>
                 </div>
               </div>
             </div>
@@ -37,8 +37,8 @@
           <div class="col-md-4">
             <div class="card">
               <div class="card-body donut">
-                <h2>Pending Requests</h2>
-                <canvas #pendingRequestsChartCanvas></canvas>
+                <p>Pending Requests</p>
+                <canvas class="donucan" #pendingRequestsChartCanvas></canvas>
               </div>
             </div>
           </div>
@@ -46,8 +46,8 @@
           <div class="col-md-4">
             <div class="card">
               <div class="card-body donut">
-                <h2>Approved Requests</h2>
-                <canvas #approvedRequestsChartCanvas></canvas>
+                <p>Approved Requests</p>
+                <canvas class="donucan" #approvedRequestsChartCanvas></canvas>
               </div>
             </div>
           </div>
@@ -55,8 +55,8 @@
           <div class="col-md-4">
             <div class="card">
               <div class="card-body donut">
-                <h2>Rejected Requests</h2>
-                <canvas #rejectedRequestsChartCanvas></canvas>
+                <p>Rejected Requests</p>
+                <canvas class="donucan" #rejectedRequestsChartCanvas></canvas>
               </div>
             </div>
           </div>
