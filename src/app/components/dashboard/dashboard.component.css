@@ -37,10 +37,9 @@
   }
 
   .clock-container {
-    font-size: 7em;
+    font-size: 5em;
     color: #ffffff;
-    margin-top: 80px;
-    height: 125px;
+    margin-top: 10px;
     font-family: 'digitalfont';
   }
   

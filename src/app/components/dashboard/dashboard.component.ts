@@ -5,12 +5,11 @@ import { RequestService } from 'src/app/services/request.service';
 import { PostService } from 'src/app/services/post.service';
 import { EventService } from 'src/app/services/event.service';
 import { AnnouncementService } from 'src/app/services/announcement.service';
-import { interval } from 'rxjs';
+import { interval, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 // Register Chart.js components
 Chart.register(...registerables);
-// ... (import statements)
-// ... (import statements)
 
 @Component({
   selector: 'app-dashboard',
@@ -33,8 +32,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('rejectedRequestsChartCanvas') rejectedRequestsChartCanvas?: ElementRef;
   @ViewChild('pendingRequestsChartCanvas') pendingRequestsChartCanvas?: ElementRef;
   @ViewChild('approvedRequestsChartCanvas') approvedRequestsChartCanvas?: ElementRef;
+  @ViewChild('radarChartCanvas') radarChartCanvas?: ElementRef;
   
-
   constructor(
     private requestService: RequestService,
     private postService: PostService,
@@ -68,113 +67,109 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   fetchData(): void {
-    this.fetchTotalUsers();
-    this.fetchTotalRequests();
-    this.fetchPostCount();
-    this.fetchEventCount();
-    this.fetchAnnouncementCount();
-    this.fetchRequestCounts();
-    
-  }
+    const totalUsers$ = this.requestTotalUsers();
+    const totalRequests$ = this.requestTotalRequests();
+    const totalPosts$ = this.requestTotalPosts();
+    const totalEvents$ = this.requestTotalEvents();
+    const totalAnnouncements$ = this.requestTotalAnnouncements();
+    const totalPendingRequests$ = this.requestTotalPendingRequests();
+    const totalRejectedRequests$ = this.requestTotalRejectedRequests();
+    const totalApprovedRequests$ = this.requestTotalApprovedRequests();
 
-  async fetchTotalUsers() {
-    try {
-      const db = getFirestore();
-      const usersCollection = collection(db, 'users');
-      const querySnapshot = await getDocs(usersCollection);
-      this.totalUsers = querySnapshot.size;
-      this.createCharts(); // Call createCharts after updating totalUsers
-    } catch (err) {
-      console.error('Error fetching total users:', err);
-    }
-  }
-
-  fetchRequestCounts(): void {
-    this.requestService.getPendingRequestsCount().subscribe((count) => {
-      this.totalPendingRequests = count;
-      this.createCharts();
-    });
-
-    this.requestService.getRejectedRequestsCount().subscribe((count) => {
-      this.totalRejectedRequests = count;
-      this.createCharts();
-    });
-
-    this.requestService.getApprovedRequestsCount().subscribe((count) => {
-      this.totalApprovedRequests = count;
+    combineLatest([
+      totalUsers$,
+      totalRequests$,
+      totalPosts$,
+      totalEvents$,
+      totalAnnouncements$,
+      totalPendingRequests$,
+      totalRejectedRequests$,
+      totalApprovedRequests$
+    ]).subscribe(() => {
       this.createCharts();
     });
   }
 
-  fetchTotalRequests() {
-    this.requestService.getAllRequestsCount().subscribe((count) => {
-      this.totalRequests = count;
-    });
+  requestTotalUsers() {
+    return this.requestService.getAllRequestsCount().pipe(map(count => this.totalUsers = count));
   }
 
-  fetchPostCount() {
-    this.postService.getPostCount().subscribe((count) => {
-      this.totalPosts = count;
-    });
+  requestTotalRequests() {
+    return this.requestService.getAllRequestsCount().pipe(map(count => this.totalRequests = count));
   }
 
-  fetchEventCount() {
-    this.eventService.getEventCount().subscribe((count) => {
-      this.totalEvents = count;
-    });
+  requestTotalPosts() {
+    return this.postService.getPostCount().pipe(map(count => this.totalPosts = count));
   }
 
-  fetchAnnouncementCount() {
-    this.announcementService.getAnnouncementCount().subscribe((count) => {
-      this.totalAnnouncements = count;
-    });
+  requestTotalEvents() {
+    return this.eventService.getEventCount().pipe(map(count => this.totalEvents = count));
+  }
+
+  requestTotalAnnouncements() {
+    return this.announcementService.getAnnouncementCount().pipe(map(count => this.totalAnnouncements = count));
+  }
+
+  requestTotalPendingRequests() {
+    return this.requestService.getPendingRequestsCount().pipe(map(count => this.totalPendingRequests = count));
+  }
+
+  requestTotalRejectedRequests() {
+    return this.requestService.getRejectedRequestsCount().pipe(map(count => this.totalRejectedRequests = count));
+  }
+
+  requestTotalApprovedRequests() {
+    return this.requestService.getApprovedRequestsCount().pipe(map(count => this.totalApprovedRequests = count));
   }
 
   createCharts(): void {
     // Reference to the canvas element
-    const chartCtx = this.totalUsersChartCanvas!.nativeElement.getContext('2d');
-    const rejectedRequestsChartCtx = this.rejectedRequestsChartCanvas!.nativeElement.getContext('2d');
-    const pendingRequestsChartCtx = this.pendingRequestsChartCanvas!.nativeElement.getContext('2d');
-    const approvedRequestsChartCtx = this.approvedRequestsChartCanvas!.nativeElement.getContext('2d');
-    // Create the chart
-    new Chart(chartCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Total Users', 'Total Requests', 'Total Posts', 'Total Events', 'Total Announcements'],
-        datasets: [
-          {
-            label: 'Data Overview',
-            data: [this.totalUsers, this.totalRequests, this.totalPosts, this.totalEvents, this.totalAnnouncements],
-            backgroundColor: [
-              'rgba(75, 192, 192, 0.5)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-              'rgba(75, 192, 192, 1)',
-              'rgba(255, 99, 132, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
-            borderRadius: 15,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: Math.max(this.totalUsers, this.totalRequests, this.totalPosts, this.totalEvents, this.totalAnnouncements) + 1,
+    const chartCtx = this.totalUsersChartCanvas?.nativeElement.getContext('2d');
+    const rejectedRequestsChartCtx = this.rejectedRequestsChartCanvas?.nativeElement.getContext('2d');
+    const pendingRequestsChartCtx = this.pendingRequestsChartCanvas?.nativeElement.getContext('2d');
+    const approvedRequestsChartCtx = this.approvedRequestsChartCanvas?.nativeElement.getContext('2d');
+    const radarChartCtx = this.radarChartCanvas?.nativeElement.getContext('2d');
+    
+    if (chartCtx && rejectedRequestsChartCtx && pendingRequestsChartCtx && approvedRequestsChartCtx) {
+      // Create the chart
+      new Chart(chartCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Total Users', 'Total Requests', 'Total Posts', 'Total Events', 'Total Announcements'],
+          datasets: [
+            {
+              label: 'Data Overview',
+              data: [this.totalUsers, this.totalRequests, this.totalPosts, this.totalEvents, this.totalAnnouncements],
+              backgroundColor: [
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+              ],
+              borderColor: [
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 159, 64, 1)',
+              ],
+              borderWidth: 1,
+              borderRadius: 15,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: Math.max(this.totalUsers, this.totalRequests, this.totalPosts, this.totalEvents, this.totalAnnouncements) + 1,
+            },
           },
         },
-      },
-    });
+      });
 
-    new Chart(pendingRequestsChartCtx, {
+      new Chart(pendingRequestsChartCtx, {
       type: 'doughnut',
       data: {
         labels: ['Pending Requests', 'Total Requests - Pending'],
@@ -233,6 +228,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }],
       },
     });
+
+ new Chart(radarChartCtx, {
+      type: 'line',
+      data: {
+        labels: ['Total Users', 'Total Requests', 'Total Posts', 'Total Events', 'Total Announcements'],
+        datasets: [
+          {
+            label: 'Data Overview',
+            data: [this.totalUsers, this.totalRequests, this.totalPosts, this.totalEvents, this.totalAnnouncements],
+            backgroundColor: [
+              'rgba(75, 192, 192, 0.5)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+            ],
+            borderColor: [
+              'rgba(75, 192, 192, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 159, 64, 1)',
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+    });
+
+    }
   }
-  
 }
+

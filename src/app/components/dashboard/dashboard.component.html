@@ -2,7 +2,19 @@
     <div class="wrapper">
       <div class="container">
 
-        <div class="row text-center ">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 digiclock">
+            <div class="card digicard">
+              <div class="card-body">
+                <div class="clock-container clock" #digitalClock>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+
+        <div class="row text-center">
             <div class="col-md-6 chart">
               <div class="card">
                 <div class="card-body">
@@ -11,10 +23,11 @@
               </div>
             </div>
 
-            <div class="col-md-6 digiclock">
-              <div class="card digicard">
+            <div class="col-md-6">
+              <div class="card">
                 <div class="card-body">
-                  <div class="clock-container clock" #digitalClock>
+                  <h2>Data Overview (Radar Chart)</h2>
+                  <canvas #radarChartCanvas></canvas>
                 </div>
               </div>
             </div>
