@@ -4,6 +4,7 @@
     height: 100vh;
     background-color: #fff;
     overflow: auto; /* Add overflow: auto to enable scrolling if content exceeds container height */
+    z-index: 10;
 }
 
 .requests-container h2 {

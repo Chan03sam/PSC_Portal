@@ -1,13 +1,12 @@
-<div class="container">
-    <div class="postcontainer bg-light p-3 border rounded">
+<div class="container row">
+    <div class="postcontainer col-md-6 bg-light p-3 border rounded">
         <div class="post-heading bg-white p-2 rounded mb-3">
             <p class="font-weight-bold"><i class="fa-solid fa-pen-to-square"></i> Posts</p>
         </div>
         <div class="posting-area bg-white p-3 rounded mb-3">
             <div class="user d-flex align-items-center">
-                <img *ngIf="profileImageURL; else tempUserIcon" [src]="profileImageURL" alt="Profile Image" class="rounded-circle border-orange mr-3">
+                <img *ngIf="profileImageURL; else tempUserIcon" [src]="profileImageURL" alt="Profile Image" class="rounded-circle border-orange mr-4">
                 <ng-template #tempUserIcon>
-                    <img src="/assets/images/user_icon.png" alt="Temporary User Icon" class="rounded-circle border-orange mr-3">
                 </ng-template>
             </div>
             <textarea class="form-control post-textarea" [(ngModel)]="postContent" placeholder="Write your post..."></textarea>
@@ -25,5 +24,11 @@
                 <button class="btn btn-danger delete-post" (click)="deletePost(post)">Delete</button>
             </div>
         </div>
+    </div>
+    <div class="col-md-3">
+        <app-announcement></app-announcement>
+    </div>
+    <div class="col-md-3">
+        <app-event></app-event>
     </div>
 </div>

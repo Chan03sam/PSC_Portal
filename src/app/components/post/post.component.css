@@ -1,18 +1,12 @@
 .container {
     position: absolute; /* Change to relative positioning */
-    width: 60%;
-    min-height: 50vh;
-    top: 1000px;
     font-family: "Segoe UI";
     border-radius: 15px;
+    margin-left: -24px;
 }
 
 .postcontainer {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 820px;
     max-height: 92vh; /* Set a maximum height for the post container */
     overflow-y: scroll;
     overflow-x: hidden;
@@ -80,7 +74,6 @@
 
 .posted-container {
     width: 100%;
-    min-height: 70px;
     margin-bottom: 10px;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;

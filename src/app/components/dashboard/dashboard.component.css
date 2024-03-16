@@ -5,16 +5,10 @@
     height: 100vh;
     position: fixed;
     z-index: 500;
-
 }
   .wrapper {
     margin-top: 40px;
     padding: 50px; /* Adjust padding as needed */
-  }
-  
-  .container {
-    max-width: 1000px;
-    max-height: 400px;
   }
   
   .card {
@@ -23,26 +17,32 @@
     margin-bottom: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+  h1{
+    margin-top: 15px;
+  }
   
-  .card-body {
+  .clockbody {
     text-align: center;
     max-height: 300px;
   }
   .chart{
-    max-height: 500px;
+    height: 500px;
+  }
+  .chartcan{
+    max-height: 300px;
   }
   .radar{
-    max-height: 250px;
+    max-height: 350px;
   }
   .radarcan{
-    max-height: 200px;
+    max-height: 300px;
   }
 
   .clock-container {
-    font-size: 5em;
+    font-size: 4em;
     color: #ffffff;
-    margin-top: 10px;
     font-family: 'digitalfont';
+    height: 20px;
   }
   
   .clock {
@@ -70,8 +70,19 @@
     overflow: hidden;
   }
   .donut{
-    max-height: 300px;
+    max-height: 200px;
   }
-  .donucan{
-    max-height: 210px;
+  .donut-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
   }
+
+  .donucan {
+      max-height: 160px;
+      flex-grow: 1; /* Allow the canvas to take up remaining space */
+  }
+
+
+  

@@ -229,6 +229,48 @@ export class RequestService {
       map(requests => requests.length)
     );
   }
+
+  getBrgyIDRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('formType', '==', 'Barangay ID')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+  getBrgyClearanceRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('formType', '==', 'Barangay Clearance')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+  getBusinessClearanceRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('formType', '==', 'Business Clearance')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+  getCertIndigencyRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('formType', '==', 'Certificate of Indigency')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+  getCertCohabRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('formType', '==', 'Certificate of Cohabitation')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+  getCertResidencyRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('formType', '==', 'Certificate of Residency')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+  getCertGoodmoralRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('formType', '==', 'Certificate of Good-Moral')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+  getCertGuardianRequestsCount(): Observable<number> {
+    return this.firestore.collection('requests', ref => ref.where('formType', '==', 'Certificate of Guardianship')).valueChanges({ idField: 'id' }).pipe(
+      map(requests => requests.length)
+    );
+  }
+
 }
 
 

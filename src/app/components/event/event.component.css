@@ -3,10 +3,8 @@
     position: absolute;
     width: 540px;
     height: 382px;
-    top: 138vh;
     border-radius: 5px;
     border: 1px solid rgba(128, 128, 128, 0.548);
-    margin: 90px -10px 20px 60%;
     background-color: white;
     font-family: "Segoe UI";
     overflow-y: scroll; /* Add this line to make it scrollable */

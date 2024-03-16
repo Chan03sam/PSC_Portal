@@ -1,26 +1,20 @@
-
 .announcement-container {
     position: absolute;
-    width: 540px;
     height: 330px;
-    top: 95vh;
     border-radius: 5px;
     border: 1px solid rgba(128, 128, 128, 0.548);
-    margin: 90px -10px 20px 60%;
     background-color: white;
     font-family: "Segoe UI";
-    overflow-y: scroll; /* Add this line to make it scrollable */
+    overflow-y: scroll;
   }
 .announcement-details {
     padding: 10px;
 }
 
-/* Adjust individual form elements as needed */
 .announcement-details .form-group {
     margin-bottom: 5px;
 }
 
-/* Apply Bootstrap form control styling */
 .form-control {
     width: 100%;
 }
@@ -33,7 +27,6 @@
     background-color: #ebe9e9;
 }
 
-/* Create a 2x2 grid within the .announcement-details section */
 .announcement-details .row {
     margin-left: -5px;
     margin-right: -5px;

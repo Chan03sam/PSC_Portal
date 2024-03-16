@@ -9,6 +9,9 @@ import 'firebase/compat/auth';
 import { FieldValue, serverTimestamp } from 'firebase/firestore';
 import { query, where, Query } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage'; 
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { map } from 'rxjs/operators'; 
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +33,9 @@ export class AuthService {
   constructor(
     private fireauth: AngularFireAuth,
     private router: Router,
-    private zone: NgZone ) 
+    private zone: NgZone,
+    private firestore: AngularFirestore,
+    ) 
     {
       this.email = '';
       this.password = ''; 
@@ -342,6 +347,17 @@ async getProfileImageURL(userEmail: string): Promise<string | undefined> {
     const userRef = doc(db, 'users', uid);
   
     return setDoc(userRef, profileData, { merge: true });
+  }
+
+  getAllUsersCount(): Observable<number> {
+    return this.firestore.collection('users').valueChanges({ idField: 'id' }).pipe(
+      map(users => users.length)
+    );
+  }
+  getAllEmployeeCount(): Observable<number> {
+    return this.firestore.collection('users', ref => ref.where('role', '==', "admin")).valueChanges({ idField: 'id' }).pipe(
+      map(users => users.length)
+    );
   }
 }
 
