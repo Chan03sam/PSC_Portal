@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, } from '@angular/core';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-history',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent {
-
+  
 }

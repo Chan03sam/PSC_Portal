@@ -28,13 +28,6 @@ p{
     height: 100vh;
 }
 
-.comms{
-    position: absolute;
-    top: 100vh;
-    width: 100%;
-    height: 100vh;
-    border: 1px solid red;
-}
 .container .getstarted{
     border: 2px RGB(25, 137, 220) solid;
     color: white;
@@ -56,7 +49,7 @@ p{
 }
 .left-text{
     position: relative;
-    top: 300px;
+    top: 280px;
     left: 80px;
 }
 .right{
@@ -65,8 +58,21 @@ p{
   height: fit-content;
   top: 150px;
 }
-.links{
-  position: relative;
+
+.posts{
+  position: absolute;
+  left: 45%;
+  margin-top: 62px;
+}
+.events{
+  position: absolute;
+  left: 62%;
+  margin-top: 62px;
+}
+.announcements{
+  position: absolute;
+  left: 62%;
+  margin-top: 62px;
 }
 
 .button {
@@ -79,6 +85,75 @@ p{
   background-color: RGB(25, 137, 220);
   transition: all 0.2s ease;
 }
+
+.row-buttons{
+  position: relative;
+  width: 40%;
+  left: 7%;
+  top: 2%;
+  border-bottom: 2px solid rgb(31, 31, 31);
+}
+.toggle-button{
+  width: 140px;
+}
+
+.comms {
+  font-size: 12px;
+  background: transparent;
+  border: none;
+  padding: 1em;
+  color: rgb(31, 31, 31);
+  text-transform: uppercase;
+  position: relative;
+  transition: 0.5s ease;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.comms::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: RGB(25, 137, 220);
+  transition: 0.5s ease;
+}
+
+.comms:hover {
+  color: #ffffff;
+  transition-delay: 0.5s;
+}
+
+.comms:hover::before {
+  width: 100%;
+}
+
+.comms::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  background-color: RGB(25, 137, 220);
+  transition: 0.4s ease;
+  z-index: -1;
+}
+
+.comms:hover::after {
+  height: 100%;
+  transition-delay: 0.4s;
+  color: aliceblue;
+}
+
+
+
+
+
 
 .button:active {
   transform: scale(0.96);
@@ -160,5 +235,34 @@ p{
     background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
       110% 10%;
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+.slide-in-right {
+	-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
   }
 }

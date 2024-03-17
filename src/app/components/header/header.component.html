@@ -12,11 +12,26 @@
         <div class="col d-flex justify-content-center align-items-center right">
             <img src="assets/images/banner.png" alt="" class="img-fluid">
         </div>
-    </div>
-    
-    <div class="row comms">
-        <div class="col-md-6">
+
+        <div class="row posts slide-in-right" *ngIf="showPostComponent">
             <app-post></app-post>
+        </div>
+        <div class="row events slide-in-right" *ngIf="showEventComponent">
+            <app-event></app-event>
+        </div>
+        <div class="row announcements slide-in-right" *ngIf="showAnnouncementComponent">
+            <app-announcement></app-announcement>
+        </div>
+    </div>
+    <div class="row row-buttons">
+        <div class="col">
+        <button class="toggle-button comms" [class.active]="showPostComponent" (click)="toggleComponent('post')">Posts</button>
+        </div>
+        <div class="col">
+        <button class="toggle-button comms" [class.active]="showEventComponent" (click)="toggleComponent('event')">Events</button>
+        </div>
+        <div class="col">
+        <button class="toggle-button comms" [class.active]="showAnnouncementComponent" (click)="toggleComponent('announcement')">Announcements</button>
         </div>
     </div>
 </div>
