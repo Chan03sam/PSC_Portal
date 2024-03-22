@@ -103,6 +103,10 @@
             <div class="panel2" ng-show="panelVisible2" *ngIf="panelVisible2">
               <h4>Notifications</h4>
               <hr>
+              <div *ngIf="notification">
+                <p>{{ notification.title }}</p>
+                <p>{{ notification.body }}</p>
+              </div>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { AuthService } from "src/app/shared/auth.service";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { BehaviorSubject } from 'rxjs';
 import { ProfileService } from 'src/app/shared/profile.service';
+import { NotificationService } from "src/app/services/notification.service";
 
 @Component({
     selector: 'app-navbar',
@@ -20,14 +21,16 @@ export class NavbarComponent {
     private profileImageURLSource = new BehaviorSubject<string>('');
     profileImageURL$ = this.profileImageURLSource.asObservable();
     emailVerified: boolean | null = null;
-
+    notification: any = null;
+    
     constructor(
         private router: Router,
         private modalService: ModalService,
         public authService: AuthService,
         private auth: AuthService,
         public afAuth: AngularFireAuth,
-        private profileService: ProfileService
+        private profileService: ProfileService,
+        private notificationService: NotificationService
         ) {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
@@ -74,7 +77,9 @@ export class NavbarComponent {
         this.profileService.profileImageURL$.subscribe((url) => {
             this.profileImageURL = url;
         });
-
+        this.notificationService.receiveMessage().subscribe((message: any) => {
+            this.notification = message.notification;
+        });
     }
     
     checkLoginStatus() {

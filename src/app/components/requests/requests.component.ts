@@ -11,6 +11,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import * as FileSaver from 'file-saver';
 import { switchMap, take, finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-requests',
@@ -31,6 +32,7 @@ export class RequestsComponent {
     private dialog: MatDialog,
     private firestore: AngularFirestore,
     private storage: AngularFireStorage,
+    private notificationService: NotificationService
     ) {
     this.fetchRequests();
   }
@@ -98,6 +100,7 @@ async approveRequest(requestId: string) {
               const downloadURL = await this.uploadPdfToStorage(generatedPdf, fileName);
               this.uploadPdfToStorage(generatedPdf, fileName);
               this.fetchRequests(); // Refresh the requests after approval
+              this.sendNotification(request, downloadURL);
             }
             if (request && request.formType == 'Business Clearance') {
               const generatedPdf = await this.requestService.generateBusinessClearancePdf(request);
@@ -314,5 +317,22 @@ async rejectRequest(requestId: string) {
     }
 }
 
+private async sendNotification(request: any, downloadURL: string) {
+  // Construct the notification payload
+  const notificationPayload = {
+    title: 'Request Approved',
+    body: `Your ${request.formType} request has been approved. Download link: ${downloadURL}`,
+    // Other properties as needed
+  };
+
+  // Send the notification
+  this.notificationService.sendNotification(request.to, notificationPayload)
+    .subscribe(
+      () => console.log('Notification sent successfully'),
+      error => console.error('Error sending notification:', error)
+    );
 }
+
+}
+
   
