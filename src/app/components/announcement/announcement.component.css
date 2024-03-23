@@ -37,3 +37,13 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+@media only screen and (max-width: 600px) {
+    
+    .announcement-container {
+        width: 480px;
+        height: 80vh;
+    }
+    .announcement-details {
+        padding: 10px;
+    }
+}

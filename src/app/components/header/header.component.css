@@ -49,8 +49,10 @@ p{
 }
 .left-text{
     position: relative;
+    width: 90%;
     top: 280px;
     left: 80px;
+    
 }
 .right{
   position: relative;
@@ -92,9 +94,11 @@ p{
   left: 7%;
   top: 2%;
   border-bottom: 2px solid rgb(31, 31, 31);
+  justify-content: center;
 }
 .toggle-button{
-  width: 140px;
+  width: 50px;
+  margin-right: 20px;
 }
 
 .comms {
@@ -264,5 +268,56 @@ p{
     -webkit-transform: translateX(0);
             transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .right{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .right img{
+    width: 500px;
+    height: 200px;
+  }
+  .left-text{
+    position: absolute;
+    font-size: 12px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 20px;
+  }
+  .left-text h1{
+    width: 100%;
+    line-height: 50px;
+  }
+  .row-buttons{
+    position: absolute;
+    top: 90%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+    justify-content: center;
+  }
+  .toggle-button{
+    max-width: 50px;
+    color: RGB(0,0,0);
+  }
+  .posts{
+    top: 2%;
+    left: -3%;
+  }
+  .events{
+    top: 2%;
+    left: -6%;
+  }
+  .announcements{
+    top: 2%;
+    left: -6%;
   }
 }

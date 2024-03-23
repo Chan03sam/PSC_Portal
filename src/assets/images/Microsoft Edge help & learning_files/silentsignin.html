@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://support.microsoft.com/en-us/silentsigninhandler -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="awa-authtype" content="Msa">
+	
+	<meta name="awa-cid" content="m:2e8540e05a36a7f3">
+	<title></title>
+</head>
+<body>
+	
+
+<div id="TAP__SETTINGS" data-settings="{&quot;AllowFeedback&quot;:true,&quot;AllowOptionalConnectedExperiences&quot;:true}"></div>
+
+	<script type="text/javascript" src="./SilentSignIn.Main.min.js.download"></script>
+	
+
+	<script type="text/javascript">
+		(function () {
+			var silentSignInProperties = {
+				account: {
+					type: 'msaFed',
+					tenantId: '9188040d-6c67-4c5b-b112-36a304b66dad',
+					memberName: 'samonte.christian120300@gmail.com',
+					displayName: 'Christian Samonte',
+					firstName: 'Christian',
+					lastName: 'Samonte',
+					authenticatedState: 'signedIn'
+				},
+				ageGroup: 3,
+				userIsChild: false,
+				localTelemetryId: 'p:00037FFE1999F7CE',
+				telemetryAuthType: 'Msa',
+				authType: 'Msa',
+				puid: '00037FFE1999F7CE',
+				dataBoundary: 'WW'
+			};
+
+			CurrentSilentSignInAttempt(silentSignInProperties, true);
+		})();
+	</script>
+
+</body></html>

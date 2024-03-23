@@ -132,3 +132,23 @@ textarea {
 .post-date{
     color: gray;
 }
+@media only screen and (max-width: 600px) {
+
+    .user img {
+        margin-right: 24px;
+    }
+    .postbutton {
+        position: relative;
+        right: -72%;
+        top: 15px;   
+    }
+    .post-textarea {
+        width: 70.5%;
+        padding: 10px;
+        top: 10%;
+        left: 20%;
+    }
+    .postcontainer {
+        max-height: 80vh; /* Set a maximum height for the post container */
+    }
+}

@@ -23,15 +23,15 @@
             <app-announcement></app-announcement>
         </div>
     </div>
-    <div class="row row-buttons">
-        <div class="col">
-        <button class="toggle-button comms" [class.active]="showPostComponent" (click)="toggleComponent('post')">Posts</button>
+    <div class="row row-buttons text-center">
+        <div class="col-auto">
+        <button class="toggle-button comms" [class.active]="showPostComponent" (click)="toggleComponent('post')"><i class="fa-brands fa-signal-messenger fa-xl"></i></button>
         </div>
-        <div class="col">
-        <button class="toggle-button comms" [class.active]="showEventComponent" (click)="toggleComponent('event')">Events</button>
+        <div class="col-auto">
+        <button class="toggle-button comms" [class.active]="showEventComponent" (click)="toggleComponent('event')"><i class="fa-solid fa-calendar-days fa-xl"></i></button>
         </div>
-        <div class="col">
-        <button class="toggle-button comms" [class.active]="showAnnouncementComponent" (click)="toggleComponent('announcement')">Announcements</button>
+        <div class="col-auto">
+        <button class="toggle-button comms" [class.active]="showAnnouncementComponent" (click)="toggleComponent('announcement')"><i class="fa-solid fa-bullhorn fa-xl"></i></button>
         </div>
     </div>
 </div>

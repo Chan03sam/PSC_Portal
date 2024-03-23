@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light mb-1">
     <div class="container-fluid">
       <img class="logo" src="/assets/images/banner.png" alt="">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <div class="collapse navbar-collapse justify-content-between text-center" id="navbarNav">
         <!-- Default tabs outside ngSwitch -->
         <ul class="navbar-nav">
           <li class="nav-item" [class.active]="isActive('/')">
@@ -81,9 +81,9 @@
         </ul>
         
         <div class="d-flex">
-        <div class="signin">
-          <div class="col-10"></div>
-          <button class="col-1" mat-raised-button color="primary" *ngIf="!authService.isAuthenticated()" (click)="openLoginModal()">
+        <div class="signin col">
+          <div class=""></div>
+          <button class="col-1 sign" mat-raised-button color="primary" *ngIf="!authService.isAuthenticated()" (click)="openLoginModal()">
             Sign In
           </button>
           <div *ngIf="authService.isAuthenticated()">
@@ -96,9 +96,10 @@
             <div class="notif" [ngClass]="{'active': panelVisible2}" (click)="togglePanel2()">
               <i class="fa-regular fa-bell fa-lg" ng-click="togglePanel2"></i>
             </div>
-            <div class="panel1" ng-show="panelVisible1" *ngIf="panelVisible1">
-              <button class="logout-button" (click)="logout()">Logout</button>
-              <button class="editprof" routerLink="view-profile" (click)="closePanel1()">View Profile</button>
+
+            <div class="panel1 row" ng-show="panelVisible1" *ngIf="panelVisible1">
+              <button class="btn btn-secondary col-12 w-75" routerLink="view-profile" (click)="closePanel1()">View Profile</button>
+              <button class="btn btn-danger col-12 w-75" (click)="logout()">Logout</button>
             </div>
             <div class="panel2" ng-show="panelVisible2" *ngIf="panelVisible2">
               <h4>Notifications</h4>

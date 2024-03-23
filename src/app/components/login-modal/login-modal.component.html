@@ -22,10 +22,10 @@
                         <label for="password">Password:</label><br>
                         <input type="password" name="password" id="pass" placeholder="Enter your password" [(ngModel)]="password">
                         <button class="loginbutton" (click)="login()">Login</button><br><br>
-                        <button class="googlebutton">Sign-in with Google</button><br><br>
                         <div class="forgot">
                             <a href="" routerLink="/forgot-password" (click)="closeLoginModal()"><i>Forgot your password?</i></a>
                             <p><i>Don't have an account yet? Click here to </i> <a href="" (click)="closeLoginModal()" routerLink="register"><i>Register</i></a></p>
+                            <p><i>Note: <br> Make sure provide the right information and remember your password.</i></p>
                         </div>
                     </div>
                     

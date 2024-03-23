@@ -41,3 +41,13 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+@media only screen and (max-width: 600px) {
+    
+    .event-container {
+        width: 480px;
+        height: 80vh;
+    }
+    .event-details {
+        padding: 20px;
+    }
+}

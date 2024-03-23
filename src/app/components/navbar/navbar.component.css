@@ -8,21 +8,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff; /* Change this to your desired background color */
-    box-shadow: 5px 5px 20px 2px rgba(0, 0, 0, 0.233);
+/*     background-color: white;  *//* Change this to your desired background color */
+/*     box-shadow: -5px 0px 10px 5px rgba(0, 0, 0, 0.233); */
     height: 56px;
     width: 100%;
     z-index: 2000;
 }
 .navbar-nav .nav-item:hover,
 .navbar-nav .nav-item.active{
-    border-bottom: 2px solid cornflowerblue;
+    border-bottom: 3px solid RGB(25, 137, 220);
     color: white !important;
-    transition: background-color 300ms ease-in-out;
+    transition: border-bottom 200ms ease-in-out;
 }
-.navbar-nav .nav-item:hover{
+/* .navbar-nav .nav-item:hover{
     background-color: rgba(100, 148, 237, 0.253);
-}
+} */
 .nav-item{
     padding-top: 10px;
     margin-right: 5px;
@@ -34,7 +34,7 @@
     margin-right: 30px;
     margin-left: 12px;
 }
-.signin button {
+.signin .sign {
     background-color: rgb(255, 255, 255);
     border: orange 2px solid;
     border-radius: 10px;
@@ -49,14 +49,14 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: background-color 0.3s ease, color 300ms ease-in-out;
 }
-.signin button:hover {
+.signin .sign:hover {
     background-color: orange;
     color: white;
 }
 .user img{
     position: absolute;
-    width: 46px;
-    height: 46px;
+    max-width: 48px;
+    max-height: 48px;
     border: 2px orange solid;
     border-radius: 50px;
     right: 20px;
@@ -69,13 +69,15 @@
 }
 .panel1{
     position: relative;
-    width: 180px;
+    width: 176px;
     height: 140px;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     border: 2px orange solid;
     top: 102px;
     text-align: center;
+    align-content: space-evenly;
+    justify-content: center;
 }
 .panel2{
     position: absolute;
@@ -89,40 +91,10 @@
     text-align: center;
     overflow-y: visible;
 }
-.logout-button{
-    position: relative;
-    font-weight: 500;
-    width: 120px;
-    height: 36px;
-    background-color: #fff;
-    border: 2px red solid;
-    border-radius: 5px;
-    color: red;
-    top: 30px;
-    font-weight: 700;
-    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
-}
-.logout-button:hover{
-    background-color: red;
-    color: rgb(231, 231, 231);
-}
-.editprof{
-    position: absolute;
-    width: 120px;
-    height: 36px;
-    font-weight: 500;
-    background-color: #fff;
-    border: 2px cornflowerblue solid;
-    border-radius: 5px;
-    color: cornflowerblue;
-    text-decoration: none;
-    top: 70%;
-    left: 50%;
-    font-weight: 700;
-    transform: translate(-50%, -50%);
-    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
-}
-.editprof:hover{
-    background-color: cornflowerblue;
-    color: rgb(231, 231, 231);
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+      background-color: #fff; /* Set your desired background color */
+    }
+
 }
