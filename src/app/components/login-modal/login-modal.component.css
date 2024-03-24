@@ -19,8 +19,8 @@
 .container{
     position: relative;
     background-color: rgb(255, 255, 255);
-    width: 1200px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -36,37 +36,16 @@
 .close{
     position: absolute;
     top: 35%;
-    left: 96%;
+    left: 90%;
     border: 1px solid white;
     background-color: white;
     color: RGB(25, 137, 220);
 }
-
-.left{
-    position: relative;
-    border-right: 2px dotted rgb(139, 139, 139);
-    width : 50%;
-    height: 590px;
-}
-.left img{
-    position: absolute;
-    width: 550px;
-    height: 550px;
-    top: -5%;
-}
-.left p{
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 350px;
-    font-weight: 700;
-    color: #212529;
-}
 .right{
     position: relative;
-    background-color: rgb(255, 255, 255);
-    width : 50%;
+    background-color: transparent;
+    width : 100%;
+    top: 10%;
     height: 590px;
 }
 .right-header{
