@@ -17,35 +17,46 @@ h1{
     transform: translate(-50%, -50%);
     color: rgb(0, 0, 0);
 }
-.forms {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 60px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    top: 24px;
+.forms-container {
+    background-color: rgb(235, 231, 231);
+    padding: 5px;
+    
+     /* Added padding for spacing */
 }
-.forms img {
-    position: relative;
-    width: 220px;
-    height: 220px;
-    border-radius: 50px;
-    display: block;
-    margin: 0 auto;
-}
-.forms div{
-    width: 300px;
-    height: 300px;
+.form-card {
     background-color: rgb(255, 255, 255);
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: box-shadow 300ms ease-in-out;
+    border-radius: 20px;
+    padding: 5px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    margin-right: 5px;
+    
 }
-.forms div:hover{
-    box-shadow: 5px 5px 25px 1px;
+
+.form-card img {
+    width: 120px; /* Adjust image size */
+    height: 120px;
+    margin-bottom: 2px; /* Added spacing below image */
+}
+
+.form-card h5 {
+    margin-bottom: 0;
+}
+
+.form-card:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 600px) and (max-width: 991px) {
+    .container {
+        position: relative;
+        top: 8%;
+        overflow-y: scroll;
+    }
+    .form-card {
+        border-radius: 10px;
+        padding: 2px;
+        margin-right: -10px;
+        
+    }
 }
